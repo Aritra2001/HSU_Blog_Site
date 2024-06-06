@@ -14,93 +14,87 @@ cloudinary.config({
 
 const CreateResource = async (req, res) => {
     const { resourceName, uploaderName, description, category, permalink, skills, security_key, phone } = req.body;
-    var flag;
-    var message;
-
+    let flag;
+    let message;
+  
     try {
-        // Initial validations
-        const pdfFile = req.files['pdf'] ? req.files['pdf'][0] : null;
-        const imageFile = req.files['image'] ? req.files['image'][0] : null;
-
-        if (!pdfFile) {
-            throw new Error('Pdf file not found!');
-        }
-
-        if (!imageFile) {
-            throw new Error('Image file not found!');
-        }
-
-        const resname = await Resource.findOne({ resourceName });
-        if (resname) {
-            throw new Error('Resource name already exists!');
-        }
-
-        const link = await Resource.findOne({ permalink });
-        if (link) {
-            throw new Error('Permalink already exists!');
-        }
-
-        if (security_key === ''){
-            console.log(flag)
-            message = 'Resource created and waiting for approval!';
-        }
-        else if(security_key !== process.env.SECURITY_KEY) {
-            throw new Error('Security key incorrect!');
-        }
-        else {
-            flag = true;
-            message = 'Resource created!';
-        }
-
-        if (!validator.isMobilePhone(phone)) {
-            throw new Error('Phone number not valid!');
-        }
-
-        // Upload files to Cloudinary
-        const uploadedFiles = {};
-        
-        const pdfPath = pdfFile.path;
-        const pdfResult = await cloudinary.uploader.upload(pdfPath, {
-            resource_type: 'raw',
-            folder: 'pdfs',
-            format: 'pdf',
-            public_id: path.basename(pdfPath, path.extname(pdfPath))
+      const pdfFile = req.files['pdf'] ? req.files['pdf'][0] : null;
+      const imageFile = req.files['image'] ? req.files['image'][0] : null;
+  
+      if (!pdfFile) {
+        throw new Error('Pdf file not found!');
+      }
+  
+      if (!imageFile) {
+        throw new Error('Image file not found!');
+      }
+  
+      // Check for existing resource name and permalink
+      const resname = await Resource.findOne({ resourceName });
+      if (resname) {
+        throw new Error('Resource name already exists!');
+      }
+  
+      const link = await Resource.findOne({ permalink });
+      if (link) {
+        throw new Error('Permalink already exists!');
+      }
+  
+      // Check security key
+      if (security_key !== process.env.SECURITY_KEY) {
+        throw new Error('Security key incorrect!');
+      }
+  
+      // Check phone number
+      if (!validator.isMobilePhone(phone)) {
+        throw new Error('Phone number not valid!');
+      }
+  
+      if (!security_key) {
+        flag = false;
+        message = 'Resource created and waiting for approval!';
+      } else {
+        flag = true;
+        message = 'Resource created!';
+      }
+  
+      // Upload files to Cloudinary
+      const uploadToCloudinary = async (file, folder) => {
+        return new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            { folder },
+            (error, result) => {
+              if (error) reject(error);
+              else resolve(result);
+            }
+          );
+          stream.end(file.buffer);
         });
-        uploadedFiles.pdfUrl = pdfResult.secure_url;
-        // Delete local file after upload
-        fs.unlinkSync(pdfPath);
-        
-        const imagePath = imageFile.path;
-        const imageResult = await cloudinary.uploader.upload(imagePath, {
-            resource_type: 'image',
-            folder: 'images',
-            format: 'png', // Adjust format as needed
-            public_id: path.basename(imagePath, path.extname(imagePath))
-        });
-        uploadedFiles.imageUrl = imageResult.secure_url;
-        // Delete local file after upload
-        fs.unlinkSync(imagePath);
-
-        // Create the resource with the uploaded file URLs
-        await Resource.create({
-            pdfPoster: uploadedFiles.imageUrl,
-            pdf: uploadedFiles.pdfUrl,
-            resourceName,
-            uploaderName,
-            description,
-            category,
-            permalink,
-            skills,
-            phone,
-            accepted: flag
-        });
-
-        res.status(200).json({ message: message });
-
+      };
+  
+      const pdfResult = await uploadToCloudinary(pdfFile, 'pdfs');
+      const imageResult = await uploadToCloudinary(imageFile, 'images');
+  
+      // Create resource
+      await Resource.create({
+        pdfPoster: imageResult.secure_url,
+        pdf: pdfResult.secure_url,
+        resourceName,
+        uploaderName,
+        description,
+        category,
+        permalink,
+        skills,
+        phone,
+        accepted: flag,
+      });
+  
+      res.status(200).json({ message });
+  
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      res.status(400).json({ error: error.message });
     }
-};
+  };
 
 const getAcceptedResoures = async (req, res) => {
     const resources = await Resource.find({ accepted: true });

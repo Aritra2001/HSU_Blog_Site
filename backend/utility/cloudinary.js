@@ -1,41 +1,8 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-// Create directories if they don't exist
-const createFolderIfNotExists = (folder) => {
-  if (!fs.existsSync(folder)) {
-    fs.mkdirSync(folder, { recursive: true });
-  }
-};
-
-createFolderIfNotExists(path.join(__dirname, '../uploads/pdfs'));
-createFolderIfNotExists(path.join(__dirname, '../uploads/images'));
-createFolderIfNotExists(path.join(__dirname, '../uploads/audios'));
-createFolderIfNotExists(path.join(__dirname, '../uploads/docs'));
-
-// Set storage engine
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    let folder = '';
-    if (file.mimetype === 'application/pdf') {
-      folder = './uploads/pdfs/';
-    } else if (file.mimetype.startsWith('image/')) {
-      folder = './uploads/images/';
-    } else if (file.mimetype.startsWith('audio/')) {
-      folder = './uploads/audios/';
-    } else if (file.mimetype.startsWith('application/vnd.openxmlformats-officedocument.wordprocessingml.document') || // .docx
-               file.mimetype.startsWith('application/msword')) { // .doc
-      folder = './uploads/docs/';
-    } else {
-      return cb(new Error('Invalid file type'), false);
-    }
-    cb(null, folder);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
+// Set storage engine to memory storage
+const storage = multer.memoryStorage();
 
 // Init upload
 const upload = multer({
