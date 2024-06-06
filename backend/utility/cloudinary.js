@@ -2,18 +2,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Create directories if they don't exist
-const createFolderIfNotExists = (folder) => {
-  if (!fs.existsSync(folder)){
-    fs.mkdirSync(folder, { recursive: true });
-  }
-};
-
-createFolderIfNotExists('./uploads/pdfs');
-createFolderIfNotExists('./uploads/images');
-createFolderIfNotExists('./uploads/audios');
-createFolderIfNotExists('./uploads/docs');
-
 // Set storage engine
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
