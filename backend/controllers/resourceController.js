@@ -4,6 +4,7 @@ const path = require('path');
 const validator = require('validator');
 const Resource = require('../models/createResourceModel');
 const { error } = require('console');
+const { default: mongoose } = require('mongoose');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -12,8 +13,23 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
+const deleteFromCloudinary = async (publicId) => {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId);
+    console.log(result);
+    if (result.result === 'ok') {
+      return { success: true, message: 'File deleted successfully' };
+    } else {
+      return { success: false, message: 'Failed to delete file' };
+    }
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: 'An error occurred while deleting the file' };
+  }
+};
+
 const CreateResource = async (req, res) => {
-    const { resourceName, uploaderName, description, category, permalink, skills, security_key, phone } = req.body;
+    const { resourceName, uploaderName, description, category, permalink, skills, security_key, phone, Type, email } = req.body;
     let flag;
     let message;
   
@@ -41,22 +57,27 @@ const CreateResource = async (req, res) => {
       }
   
       // Check security key
-      if (security_key !== process.env.SECURITY_KEY) {
+      if (security_key === '') {
+        flag = false;
+        message = 'Resource created and waiting for approval!';
+      } 
+      else if (security_key !== process.env.SECURITY_KEY) {
         throw new Error('Security key incorrect!');
+      }
+      else {
+        flag = true;
+        message = 'Resource created!';
       }
   
       // Check phone number
       if (!validator.isMobilePhone(phone)) {
         throw new Error('Phone number not valid!');
       }
-  
-      if (!security_key) {
-        flag = false;
-        message = 'Resource created and waiting for approval!';
-      } else {
-        flag = true;
-        message = 'Resource created!';
+
+      if(!validator.isEmail(email)) {
+        throw new Error('Email not valid!')
       }
+
   
       // Upload files to Cloudinary
       const uploadToCloudinary = async (file, folder) => {
@@ -78,7 +99,9 @@ const CreateResource = async (req, res) => {
       // Create resource
       await Resource.create({
         pdfPoster: imageResult.secure_url,
+        pdfPosterPubclidId: imageResult.public_id,
         pdf: pdfResult.secure_url,
+        pdfPubclidId: pdfResult.public_id,
         resourceName,
         uploaderName,
         description,
@@ -87,6 +110,7 @@ const CreateResource = async (req, res) => {
         skills,
         phone,
         accepted: flag,
+        Type
       });
   
       res.status(200).json({ message });
@@ -114,10 +138,54 @@ const getPendingResources = async (req, res) => {
         res.status(200).json(resources);
     }
     else {
-        res.status(400).json({error: 'No resource found'});
+        res.status(200).json({message: 'No resource found!'});
     }
 }
 
-module.exports = { CreateResource, getAcceptedResoures, getPendingResources };
+const categoryFilter = async (req, res) => {
+
+   const { category } = req.body;
+   const resource = await Resource.find({ category }); 
+
+   if(resource) {
+    res.status(200).json(resource);
+   }
+   else {
+    res.status(200).json(({message: 'No resource found for this category!'}))
+   }
+}
+
+const getResouce = async (req, res) => {
+  const { id } = req.params;
+
+  const resource = await Resource.findById({ _id: id });
+
+  if(!resource) {
+    res.status(400).json({error: 'No Resouce found'});
+  }
+  else {
+    res.status(200).json({resource});
+  }
+
+}
+
+const updateResource = async (req, res) => {
+  const { id } = req.params;
+  const { detail } = req.body;
+
+  if(detail === 'Approve') {
+    await Resource.findByIdAndUpdate({ _id: id}, { accepted: true});
+    res.status(200).json({message: 'Resource approved'});
+  }
+  else {
+    const resource = await Resource.findById({ _id: id });
+    deleteFromCloudinary(resource.pdfPubclidId);
+    deleteFromCloudinary(resource.pdfPosterPubclidId);
+    await Resource.findByIdAndDelete({ _id: id });
+    res.status(200).json({message: 'Resource deleted successfully'});
+  }
+}
+
+module.exports = { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource };
 
 

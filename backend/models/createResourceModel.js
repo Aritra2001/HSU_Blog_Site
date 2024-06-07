@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
+const { default: isEmail } = require('validator/lib/isEmail');
 
 const Schema = mongoose.Schema
 
@@ -8,7 +10,15 @@ const ResourceSchema = new Schema(
             type: String,
             required: true
         },
+        pdfPosterPubclidId: {
+            type: String,
+            required: true
+        },
         pdf: {
+            type: String,
+            required: true
+        },
+        pdfPubclidId: {
             type: String,
             required: true
         },
@@ -42,6 +52,14 @@ const ResourceSchema = new Schema(
         },
         accepted: {
             type: Boolean,
+            required: true
+        },
+        Type: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
             required: true
         }
     }, { timestamps: true}
