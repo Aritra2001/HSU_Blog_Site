@@ -27,7 +27,7 @@ function checkFileType(file, cb) {
   // Check mime
   const mimetype = filetypes.test(file.mimetype);
 
-  if (mimetype && extname) {
+  if (extname) {
     return cb(null, true);
   } else {
     cb('Error: PDFs, Images, Audio Files, and Documents Only!');
