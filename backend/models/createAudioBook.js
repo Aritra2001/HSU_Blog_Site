@@ -47,10 +47,6 @@ const AudioBookSchema = new Schema({
         type: Number,
         required: true
     },
-    accepted: {
-        type: Boolean,
-        required: true
-    },
     Type: {
         type: String,
         required: true  

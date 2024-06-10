@@ -3,8 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const validator = require('validator');
 const Resource = require('../models/createResourceModel');
-const { error } = require('console');
-const { default: mongoose } = require('mongoose');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -93,8 +91,8 @@ const CreateResource = async (req, res) => {
         });
       };
   
-      const pdfResult = await uploadToCloudinary(pdfFile, 'pdfs');
-      const imageResult = await uploadToCloudinary(imageFile, 'images');
+      const pdfResult = await uploadToCloudinary(pdfFile, 'pdf');
+      const imageResult = await uploadToCloudinary(imageFile, 'image');
   
       // Create resource
       await Resource.create({
@@ -110,7 +108,8 @@ const CreateResource = async (req, res) => {
         skills,
         phone,
         accepted: flag,
-        Type
+        Type,
+        email
       });
   
       res.status(200).json({ message });
@@ -161,7 +160,7 @@ const getResouce = async (req, res) => {
   const resource = await Resource.findById({ _id: id });
 
   if(!resource) {
-    res.status(400).json({error: 'No Resouce found'});
+    res.status(400).json({error: 'Resouce not found'});
   }
   else {
     res.status(200).json({resource});
@@ -171,10 +170,10 @@ const getResouce = async (req, res) => {
 
 const updateResource = async (req, res) => {
   const { id } = req.params;
-  const { detail } = req.body;
+  const { status } = req.body;
 
-  if(detail === 'Approve') {
-    await Resource.findByIdAndUpdate({ _id: id}, { accepted: true});
+  if(status === 'Approve') {
+    await Resource.findByIdAndUpdate({ _id: id}, { accepted: true });
     res.status(200).json({message: 'Resource approved'});
   }
   else {
