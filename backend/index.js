@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const createResource = require('./routes/resourceRoute');
 const createAudioBook = require('./routes/audiobookRoutes');
+const createProject = require('./routes/projectRoutes');
 
 //express app
 const app = express();
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 //routes
 app.use('/api', createResource);
 app.use('/api', createAudioBook);
+app.use('/api', createProject);
 
 //database connection
 mongoose.connect(process.env.MONGO_URI)
