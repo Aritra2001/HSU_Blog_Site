@@ -27,7 +27,7 @@ const deleteFromCloudinary = async (publicId) => {
 };
 
 const CreateProject = async (req, res) => {
-    const { ProjectName, AuthorName, abstract, category, permalink, skills, security_key, phone, Type, email, mission_statement, team_size, status } = req.body;
+    const { ProjectName, AuthorName, abstract, category, permalink, skills, security_key, phone, Type, email, project_vision, mission_statement, team_size, status } = req.body;
     let flag;
     let message;
   
@@ -112,6 +112,7 @@ const CreateProject = async (req, res) => {
         Type,
         email,
         mission_statement,
+        project_vision,
         team_size,
         status
       });

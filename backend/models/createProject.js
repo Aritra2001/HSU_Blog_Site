@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 
 const Schema = mongoose.Schema;
 const ProjectSchema = new Schema({
@@ -50,6 +51,10 @@ const ProjectSchema = new Schema({
     Type: {
         type: String,
         required: true  
+    },
+    project_vision: {
+        type: String,
+        required: true
     },
     mission_statement: {
         type: String,
