@@ -75,6 +75,10 @@ const ProjectSchema = new Schema({
     accepted: {
         type: Boolean,
         required: true
+    },
+    likes: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true})
 

@@ -84,7 +84,8 @@ const createAudioBook = async (req, res) => {
       skills,
       phone,
       Type,
-      email
+      email,
+      likes: 0
     });
 
     res.status(200).json({
@@ -136,4 +137,34 @@ const getAudioBook = async (req, res) => {
 
 }
 
-module.exports = { createAudioBook, categoryFilter, getAudioBooks, getAudioBook };
+const addLikes = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const audiobook = await AudioBook.findOne({ _id: id });
+
+    if (!audiobook) {
+      return res.status(404).send({ error: 'Audiobook not found' });
+    }
+
+    audiobook.likes += 1;  // Increment likes by 1
+
+    await audiobook.save();  // Save the updated document
+
+    res.send({message: 'AudioBook Liked'});  // Send back the updated audiobook document
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred' });
+  }
+};
+
+const getpopularAudiobooks = async (req, res) => {
+
+  const audiobooks = await AudioBook.find({ likes: { $gte: 30 } });
+
+  if(audiobooks) {
+    res.status(200).json(audiobooks)
+  }
+}
+
+
+module.exports = { createAudioBook, categoryFilter, getAudioBooks, getAudioBook, addLikes, getpopularAudiobooks };

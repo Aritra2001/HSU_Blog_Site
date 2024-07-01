@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 
 const Schema = mongoose.Schema;
 const AudioBookSchema = new Schema({
@@ -54,6 +55,10 @@ const AudioBookSchema = new Schema({
     email: {
         type: String,
         required: true 
+    },
+    likes: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true})
 

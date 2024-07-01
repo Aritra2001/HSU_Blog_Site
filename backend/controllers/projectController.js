@@ -114,7 +114,8 @@ const CreateProject = async (req, res) => {
         mission_statement,
         project_vision,
         team_size,
-        status
+        status,
+        likes: 0
       });
   
       res.status(200).json({ message });
@@ -190,4 +191,33 @@ const updateProject = async (req, res) => {
   }
 }
 
-module.exports = { CreateProject, getAcceptedProjects, getPendingProjects, categoryFilter, getProject, updateProject };
+const addLikes = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const project = await Project.findOne({ _id: id });
+
+    if (!project) {
+      return res.status(404).send({ error: 'Project not found' });
+    }
+
+    project.likes += 1;  // Increment likes by 1
+
+    await project.save();  // Save the updated document
+
+    res.send({message: 'Project Liked'});  // Send back the updated audiobook document
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred' });
+  }
+};
+
+const getpopularProjects = async (req, res) => {
+
+  const projects = await Project.find({ likes: { $gte: 30 } });
+
+  if(projects) {
+    res.status(200).json(projects)
+  }
+}
+
+module.exports = { CreateProject, getAcceptedProjects, getPendingProjects, categoryFilter, getProject, updateProject, addLikes, getpopularProjects };

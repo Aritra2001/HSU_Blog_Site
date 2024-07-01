@@ -109,7 +109,8 @@ const CreateResource = async (req, res) => {
         phone,
         accepted: flag,
         Type,
-        email
+        email,
+        likes: 0
       });
   
       res.status(200).json({ message });
@@ -185,6 +186,35 @@ const updateResource = async (req, res) => {
   }
 }
 
-module.exports = { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource };
+const addLikes = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const resource = await Resource.findOne({ _id: id });
+
+    if (!resource) {
+      return res.status(404).send({ error: 'Resource not found' });
+    }
+
+    resource.likes += 1;  // Increment likes by 1
+
+    await resource.save();  // Save the updated document
+
+    res.send({message: 'Resource Liked'});  // Send back the updated audiobook document
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred' });
+  }
+};
+
+const getpopularResources = async (req, res) => {
+
+  const resources = await Resource.find({ likes: { $gte: 30 } });
+
+  if(resources) {
+    res.status(200).json(resources)
+  }
+}
+
+module.exports = { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource, addLikes, getpopularResources };
 
 

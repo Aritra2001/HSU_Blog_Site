@@ -61,6 +61,10 @@ const ResourceSchema = new Schema(
         email: {
             type: String,
             required: true
+        },
+        likes: {
+            type: Number,
+            required: true
         }
     }, { timestamps: true}
 )
