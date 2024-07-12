@@ -12,7 +12,7 @@ const app = express();
 
 //cors
 const allowedOrigins = [
-    "http://localhost:3001", 
+    "http://localhost:3001", "https://hsu-blog-site-frontend.vercel.app"
 
 ];
 
