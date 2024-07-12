@@ -1,0 +1,219 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .create-resource {
+    max-width: 100%;
+    margin: 3rem;
+    padding: 20px;
+    background: transparent;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  #name, #writer, #summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone,#teamMembers,#vision,#missionStatement,#projectStatus {
+    border-radius: 51px;
+    border: 1px solid #000;
+    background: #FFF;
+    height: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+  }
+  
+  #whatYouWillLearn .optionListContainer {
+    display: none;
+  }
+  
+  .searchWrapper {
+    padding-left: 2rem;
+    width: 100%;
+  }
+  
+  .chip {
+    background-color: #D9D9D9;
+    color: #2E2E2E;
+  }
+  
+  .multiSelectContainer input {
+    margin-top: 1rem;
+    padding-left: 2rem;
+  }
+  
+  select {
+    border-radius: 51px;
+    border: 1px solid #000;
+    background: #FFF;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-right: 30px;
+    appearance: none;
+  }
+  
+  .select-arrow {
+    position: relative;
+    width: 100%;
+  }
+  
+  .select-arrow::after {
+    content: '▼';
+    position: absolute;
+    top: 3rem;
+    right: 15px;
+    pointer-events: none;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 4rem;
+  }
+  
+  label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  label .required {
+    color: red;
+    margin-left: 5px;
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  input[type='text'], input[type='email'] {
+    padding-left: 2rem;
+  }
+  
+  .hidden-input {
+    display: none;
+  }
+  
+  .custom-file-input {
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 18px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    width: 90%;
+    height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .upload {
+    margin: auto;
+    position: relative;
+    top: 5rem;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #fff;
+    color:#6637ED;
+    border:1px solid black;
+  }
+  
+  .doc-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .doc-buttons button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .doc-buttons button:hover {
+    background-color: #0056b3;
+  }
+  .submit-button {
+    background-color: #6637ED;
+    border-radius: 51px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button.loading {
+    background-color: #CCCCCC; /* Dull color for loading state */
+    color: #000;
+  }
+  @media (max-width: 600px) {
+    .create-resource {
+      padding: 15px;
+      margin: 0;
+    }
+  
+    .form-container {
+      margin: 0;
+    }
+  
+    .row {
+      flex-direction: column;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    button {
+      padding: 10px;
+    }
+  }
+  
