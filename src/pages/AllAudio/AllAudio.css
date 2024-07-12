@@ -1,0 +1,144 @@
+.all-audio-container {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.filter-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  padding: 10px 20px;
+  border: 1px solid #0e0d0d;
+  border-radius: 30px;
+  background-color: white;
+  color:black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-button.selected {
+  background-color: #6637ED;
+  color: white;
+}
+
+.category-button:hover {
+  background-color: #6637ED;
+  color:white;
+}
+
+.audio-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  width: 100%;
+  height: auto;
+}
+
+.audio-box {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+    background-position: center;
+}
+
+.audio-box:hover {
+  transform: translateY(-5px);
+}
+
+.audio-banner {
+  width: 135%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+h3 {
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+p {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.popular {
+  margin-top: 30px;
+}
+
+.swiper-container {
+  padding: 20px 4rem;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+
+
+
+.slide-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.swiper-container {
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .audio-grid {
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+
+  .category-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+  .audio-box {
+    padding: 8px;
+  }
+
+  .audio-banner {
+    max-height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .audio-grid {
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .category-button {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+
+  .audio-box {
+    padding: 5px;
+  }
+
+  .audio-banner {
+    max-height: 190px;
+  }
+}

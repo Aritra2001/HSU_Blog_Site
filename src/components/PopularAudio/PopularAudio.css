@@ -1,0 +1,68 @@
+/* PopularAudio.css */
+
+.popular-audio-container {
+  padding: 20px;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px; /* Set initial height for the Swiper container */
+}
+
+.popularSlide {
+  width: 400px; /* Adjusted width for each slide */
+  height: 250px; /* Adjusted height for each slide */
+  flex-shrink: 0; /* Prevent shrinking in smaller containers */
+}
+
+.audiobook-slide {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  height:10rem;
+  width:20rem;
+  
+}
+
+.slide-imageP {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover; /* Ensures the image covers the entire slide without stretching */
+  border-radius: 10px; /* Matches the border-radius of the .audiobook-slide */
+}
+
+.audiobook-content {
+  padding: 10px; /* Reduced padding for content */
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for content */
+  color: #ffffff;
+  width: 100%;
+}
+
+.audiobook-content h3 {
+  margin-bottom: 5px; /* Reduced margin */
+  font-size: 1rem; /* Adjusted font size */
+}
+
+.audiobook-content p {
+  font-size: 0.8rem; /* Adjusted font size */
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+/* Media Queries for Responsive Design */
+
+@media (min-width: 768px) {
+  .swiper-container {
+    height: 350px; /* Increased height for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .swiper-container {
+    height: 450px; /* Further increased height for extra-large screens */
+  }
+}
