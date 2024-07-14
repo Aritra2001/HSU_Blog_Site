@@ -9,6 +9,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
+function isValidHexColor(code) {
+  // Regular expression for matching valid hex color codes
+  const hexPattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
+  return hexPattern.test(code);
+}
+
 const deleteFromCloudinary = async (publicId) => {
   try {
     const result = await cloudinary.uploader.destroy(publicId);
@@ -26,7 +32,7 @@ const deleteFromCloudinary = async (publicId) => {
 
 
 const createAudioBook = async (req, res) => {
-  const { AudioBookName, AuthorName, description, category, permalink, skills, security_key, phone, Type, email } = req.body;
+  const { AudioBookName, AuthorName, description, category, permalink, skills, security_key, color, Type, email } = req.body;
 
   try {
     const audioFile = req.files['audio'] ? req.files['audio'][0] : null;
@@ -58,12 +64,12 @@ const createAudioBook = async (req, res) => {
         throw new Error('Security key incorrect!');
     }
 
-    if(!security_key) {
-      throw Error('Enter security key!')
+    if(isValidHexColor(color) === false) {
+      throw Error('Enter color code in correctly!')
     }
 
-    if (!validator.isMobilePhone(phone)) {
-      throw new Error('Phone number not valid!');
+    if(!security_key) {
+      throw Error('Enter security key!')
     }
 
     if (!validator.isEmail(email)) {
@@ -86,6 +92,7 @@ const createAudioBook = async (req, res) => {
 
     const audioResult = await uploadToCloudinary(audioFile, 'audio');
     const imageResult = await uploadToCloudinary(imageFile, 'image');
+    const duration = ((audioResult.duration) / 60).toFixed(2);
 
     await AudioBook.create({
       audioBookPoster: imageResult.secure_url,
@@ -98,10 +105,11 @@ const createAudioBook = async (req, res) => {
       category,
       permalink,
       skills,
-      phone,
+      color,
       Type,
       email,
-      likes: 0
+      likes: 0,
+      duration
     });
 
     res.status(200).json({
@@ -302,5 +310,19 @@ const editAudioBook = async (req, res) => {
   }
 };
 
+const searchAudioBooks = async (req, res) => {
 
-module.exports = { createAudioBook, categoryFilter, getAudioBooks, getAudioBook, addLikes, getpopularAudiobooks, deleteAudiobook, editAudioBook };
+  const { AudioBookName }  = req.body;
+  const regex = new RegExp( AudioBookName, 'i');
+
+  try {
+    const audiobooks = await AudioBook.find({ AudioBookName: { $regex: regex }}).sort({ createdAt: -1 });
+
+    res.status(200).json(audiobooks);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+
+module.exports = { createAudioBook, categoryFilter, getAudioBooks, getAudioBook, addLikes, getpopularAudiobooks, deleteAudiobook, editAudioBook, searchAudioBooks };

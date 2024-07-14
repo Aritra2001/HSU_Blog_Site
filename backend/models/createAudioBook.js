@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { type } = require('os');
 
 const Schema = mongoose.Schema;
 const AudioBookSchema = new Schema({
@@ -13,6 +12,10 @@ const AudioBookSchema = new Schema({
         required: true
     },
     audio: {
+        type: String,
+        required: true
+    },
+    duration: {
         type: String,
         required: true
     },
@@ -44,8 +47,8 @@ const AudioBookSchema = new Schema({
         type: [String],
         required: true
     },
-    phone: {
-        type: Number,
+    color: {
+        type: String,
         required: true
     },
     Type: {

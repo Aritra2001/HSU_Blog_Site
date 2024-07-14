@@ -1,6 +1,6 @@
 const express = require('express');
 const upload = require('../utility/cloudinary');
-const { createAudioBook, categoryFilter, getAudioBooks, getAudioBook, addLikes, getpopularAudiobooks, deleteAudiobook, editAudioBook } = require('../controllers/audioBookController')
+const { createAudioBook, categoryFilter, getAudioBooks, getAudioBook, addLikes, getpopularAudiobooks, deleteAudiobook, editAudioBook, searchAudioBooks } = require('../controllers/audioBookController')
 
 const router = express.Router();
 
@@ -19,5 +19,7 @@ router.get('/getpopularAudiobook', getpopularAudiobooks);
 router.patch('/editAudiobook/:id',upload, editAudioBook);
 
 router.delete('/deleteAudiobook/:id', deleteAudiobook);
+
+router.post('/findaudiobooks', searchAudioBooks)
 
 module.exports = router;
