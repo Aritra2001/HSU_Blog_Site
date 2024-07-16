@@ -10,8 +10,11 @@ import './AllAudio.css';
 function AllAudio() {
   const [audiobooks, setAudiobooks] = useState([]);
   const [filteredAudiobooks, setFilteredAudiobooks] = useState([]);
+  const [SearchedAudiobooks, setSearchedAudiobooks] = useState([]);
   const [category, setCategory] = useState('');
-  const navigate=useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false); // Track if a search is being performed
+  const navigate = useNavigate();
 
   const fetchAudiobooks = async () => {
     try {
@@ -29,6 +32,7 @@ function AllAudio() {
 
   const handleCategoryChange = async (selectedCategory) => {
     setCategory(selectedCategory);
+    setIsSearching(false); // Reset search state on category change
 
     if (selectedCategory === 'All') {
       setFilteredAudiobooks(audiobooks);
@@ -38,7 +42,6 @@ function AllAudio() {
     try {
       const response = await axios.post('https://hsu-blog-site.onrender.com/api/categoryFilteraudiobook', { category: selectedCategory });
 
-      // Check if the response contains a message indicating no resources were found
       if (response.data.message) {
         setFilteredAudiobooks([]);
       } else {
@@ -49,74 +52,174 @@ function AllAudio() {
     }
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setIsSearching(true); // Set search state to true
+
+    try {
+      const response = await axios.post('https://hsu-blog-site.onrender.com/api/findaudiobooks', { AudioBookName: searchTerm });
+
+      setSearchedAudiobooks(response.data);
+    } catch (error) {
+      console.error('Error searching audiobooks:', error);
+    }
+  };
+
   return (
     <>
-   
-    <div className="all-audio-container">
-    <div className="popular">
-        <p style={{marginBottom:"2rem"}}>Audio Book Summaries</p>
-       
-      </div>
-      <div className="filter-container">
-        {['All', 'Option 1', 'Option 2', 'Option 3', 'Option 4'].map((cat) => (
-          <button
-            key={cat}
-            className={`category-button ${category === cat ? 'selected' : ''}`}
-            onClick={() => handleCategoryChange(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-    
-      <Swiper
-        spaceBetween={30}
-        slidesPerView={3}
-        modules={[Navigation, Pagination, Autoplay, Keyboard]}
-        autoplay={{
-          delay: 1000,
-          disableOnInteraction: false
-        }}
-        loop={true}
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1200: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        }}
-        className="swiper-container"
-      >
-        {filteredAudiobooks.map((audio) => (
-          <SwiperSlide key={audio._id} onClick={()=>{
-            navigate(`/audio/${audio._id}`)
-          }}>
-            <div className="audio-box">
-              <img src={audio.audioBookPoster} alt={audio.AudioBookName} className="audio-banner" />
+      <div className="all-audio-container">
+        <div className="filter-container">
+          {['All', 'Space Technology', 'Self Help', 'Marketing', 'Entrepreneurship', 'Astronomy', 'AI & ML'].map((cat) => (
+            <button
+              key={cat}
+              className={`category-button ${category === cat ? 'selected' : ''}`}
+              onClick={() => handleCategoryChange(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={3}
+          modules={[Navigation, Pagination, Autoplay, Keyboard]}
+          autoplay={{
+            delay: 1000,
+            disableOnInteraction: false
+          }}
+          loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1200: {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }}
+          className="swiper-container"
+        >
+          {filteredAudiobooks.map((audio) => (
+            <SwiperSlide key={audio._id} onClick={() => navigate(`/audio/${audio._id}`)}>
+              <div className="audio-box" style={{
+                backgroundColor: audio.color,
+                position: 'relative',
+                width: '100%',
+                height: '110%',
+                padding: "2rem"
+              }}>
+                <img
+                  style={{
+                    width: '100%',
+                    height: '120%',
+                    objectFit: 'cover',
+                    top: 0,
+                    left: 0
+                  }}
+                  src={audio.audioBookPoster}
+                  alt={audio.AudioBookName}
+                  className="audio-banner"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="popular">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <p>Popular</p>
+            <div className="search-bar-container">
+              <form onSubmit={handleSearch} style={{display:"flex"}}>
+                <input
+                  type="text"
+                  placeholder="Search audiobooks..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+                <button type="submit" className="search-button">Search</button>
+              </form>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="popular">
-        <p>Popular</p>
-        <PopularAudio />
+          </div>
+          
+          {isSearching ? (
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={3}
+              modules={[Navigation, Pagination, Autoplay, Keyboard]}
+              autoplay={{
+                delay: 1000,
+                disableOnInteraction: false
+              }}
+              loop={true}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 40,
+                },
+                1200: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              }}
+              className="swiper-container"
+            >
+              {SearchedAudiobooks.map(audio => (
+                <SwiperSlide key={audio._id} onClick={() => navigate(`/audio/${audio._id}`)}>
+                  <div className="audio-box" style={{
+                    backgroundColor: audio.color,
+                    position: 'relative',
+                    width: '100%',
+                    height: '110%',
+                    padding: "2rem"
+                  }}>
+                    <img
+                      style={{
+                        width: '100%',
+                        height: '120%',
+                        objectFit: 'cover',
+                        top: 0,
+                        left: 0
+                      }}
+                      src={audio.audioBookPoster}
+                      alt={audio.AudioBookName}
+                      className="audio-banner"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <PopularAudio/>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }

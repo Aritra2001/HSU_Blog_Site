@@ -54,8 +54,8 @@ function PopularAudio() {
             slidesPerView: 4,            spaceBetween: 40,
           },
           1200: {
-            slidesPerView: 4,
-            spaceBetween: 50,
+            slidesPerView: 5,
+            spaceBetween: 60,
           },
         }}
         className="swiper-container"
@@ -64,7 +64,7 @@ function PopularAudio() {
           <SwiperSlide className='popularSlide' key={audiobook._id} onClick={()=>{
             navigate(`/audio/${audiobook._id}`)
           }}>
-            <div className="audiobook-slide" style={{ backgroundColor: `#${index % 2 === 0 ? 'f0f0f0' : 'e0e0e0'}` }}>
+            <div className="audiobook-slide" style={{ backgroundColor: audiobook.color }}>
               <img src={audiobook.audioBookPoster} alt={audiobook.AudioBookName} className="slide-imageP" />
             </div>
           </SwiperSlide>

@@ -12,7 +12,7 @@ function CreateAudio() {
     permalink: '',
     writer: '',
     summary: '',
-    phone: '',
+    color: '',
     type: '',
     email: '',
     category: [],
@@ -135,10 +135,10 @@ function CreateAudio() {
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { name, writer, summary, phone, type, email, category, securityKey, whatYouWillLearn, bannerFile, audioFile } = formData;
+    const { name, writer, summary, color, type, email, category, securityKey, whatYouWillLearn, bannerFile, audioFile } = formData;
 
     // Validate required fields
-    if (!name || !writer || !summary || !phone || !type || !email || category.length === 0 || whatYouWillLearn.length === 0 || !bannerFile || !audioFile) {
+    if (!name || !writer || !summary || !color || !type || !email || category.length === 0 || whatYouWillLearn.length === 0 || !bannerFile || !audioFile) {
       showErrorToast('Please fill in all the required fields.');
       return;
     }
@@ -155,7 +155,7 @@ function CreateAudio() {
     data.append('permalink', formData.permalink);
     data.append('AuthorName', writer);
     data.append('description', summary);
-    data.append('phone', phone);
+    data.append('color', color);
     data.append('Type', type);
     data.append('email', email);
     data.append('security_key', securityKey); // Ensure the parameter name matches backend expectations
@@ -195,7 +195,7 @@ function CreateAudio() {
           permalink: '',
           writer: '',
           summary: '',
-          phone: '',
+          color: '',
           type: '',
           email: '',
           category: [],
@@ -317,9 +317,10 @@ function CreateAudio() {
             <input type="text" id="securityKey" name="securityKey" value={formData.securityKey} onChange={handleInputChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="phone">Phone Number<span className="required">*</span></label>
-            <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} />
-          </div>
+          <label htmlFor="color">Color:<span className="required">*</span></label>
+          <input type="color" id="color" name="color" value={formData.color} onChange={handleInputChange} />
+        </div>
+
         </div>
         <div className="row">
           <div className="form-group">

@@ -43,7 +43,20 @@ body {
     margin-right: auto;
     width: 95%;
   }
-  
+  #color{
+    border-radius: 51px;
+    border: 1px solid #000;
+    background: #FFF;
+    height: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+  }
   #whatYouWillLearn .optionListContainer {
     display: none;
   }

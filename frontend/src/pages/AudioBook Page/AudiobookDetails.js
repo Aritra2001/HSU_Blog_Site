@@ -32,11 +32,16 @@ function AudioBookDetail() {
 
   const handleLike = async () => {
     try {
-      await axios.post(`https://hsu-blog-site.onrender.com/api/audiobooklikes/${id}`);
-      setLikes(likes + 1);
-      setLiked(true);
+      if (liked) {
+        await axios.post(`https://hsu-blog-site.onrender.com/api/audiobooklikes/${id}`);
+        setLikes(likes - 1);
+      } else {
+        await axios.post(`https://hsu-blog-site.onrender.com/api/audiobooklikes/${id}`);
+        setLikes(likes + 1);
+      }
+      setLiked(!liked);
     } catch (error) {
-      console.error('Error liking the audio book:', error);
+      console.error('Error liking/unliking the audio book:', error);
     }
   };
 
@@ -62,12 +67,11 @@ function AudioBookDetail() {
         <img src={audioBook.audioBookPoster} alt={`${audioBook.AudioBookName} Poster`} className="banner-img" />
         <div className="hero-text">
           <h1>{audioBook.AudioBookName}</h1>
-          <p style={{color:"white",textAlign:"left"}}><strong>Written By :</strong>{audioBook.AuthorName}</p>
+          <p style={{ color: "white", textAlign: "left" }}><strong>Written By :</strong>{audioBook.AuthorName}</p>
           <div className="like-section">
             <button 
               className={`like-button ${liked ? 'liked' : ''}`}
               onClick={handleLike}
-              disabled={liked}
             >
               <i className={`fa${liked ? 's' : 'r'} fa-thumbs-up`}></i> {likes}
             </button>
@@ -81,20 +85,23 @@ function AudioBookDetail() {
         </div>
         <div className="skills">
           <h2>What You Will Learn</h2>
-          <ul style={{ width: "6rem",textAlign:"left"}}>
+          <ul style={{ width: "6rem", textAlign: "left" }}>
             {skillsArray.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>
         </div>
       </div>
-      <audio controls className="audio-player">
-        <source src={audioBook.audio} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <div className="audio-control-section">
+        <img src={audioBook.audioBookPoster} alt={`${audioBook.AudioBookName} Poster`} className="banner-img-small" />
+        <audio controls className="audio-player">
+          <source src={audioBook.audio} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
       <div className="popular">
-        <p >Popular</p>
-      <PopularAudio/>
+        <p>Popular</p>
+        <PopularAudio />
       </div>
     </div>
   );

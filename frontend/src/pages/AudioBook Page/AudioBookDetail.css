@@ -23,7 +23,7 @@
   height: 100%;
   width: 15rem;
   margin-right: 20px;
-  border: 1px solid #fff;
+  
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -72,10 +72,20 @@ border-radius: 10px;
   color: black;
 }
 
-.audio-player {
+/*.audio-player {
   width: 100%;
-  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for separation */
+/*  z-index: 1000; /* Ensure it's above other content */
+
+.audio-player {
+  flex-grow: 1;
 }
+
 
 .like-section {
   margin-top: 1rem;
@@ -92,11 +102,30 @@ border-radius: 10px;
   background-color: transparent;
   &:hover{
     background-color: transparent;
+    color: #FFFFFF;
   }
 }
 
 .like-button.liked {
  
+}
+.audio-control-section {
+  border:1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+   padding: 1rem;
+   z-index: 1100;
+}
+
+.banner-img-small {
+  width: 50px;
+  
+  margin-right: 1rem;
 }
 
 @media (max-width: 767px) {
