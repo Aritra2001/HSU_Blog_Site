@@ -33,7 +33,15 @@ h1 {
   justify-content: center;
   gap: 0.5rem;
 }
-
+.multiSelectContainer{
+  border-radius: 51px;
+  border: 1px solid #000;
+  background: #FFF;
+  height: 55px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
 #name, #writer, #summary,#category,#whatYouWillLearn, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
   border-radius: 51px;
   border: 1px solid #000;
