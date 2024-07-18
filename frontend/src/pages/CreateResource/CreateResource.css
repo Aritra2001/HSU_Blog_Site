@@ -34,7 +34,7 @@ h1 {
   gap: 0.5rem;
 }
 
-#name, #writer, #summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
+#name, #writer, #summary,#category,#whatYouWillLearn, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
   border-radius: 51px;
   border: 1px solid #000;
   background: #FFF;
