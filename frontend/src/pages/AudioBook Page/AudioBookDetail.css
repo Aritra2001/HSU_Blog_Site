@@ -2,14 +2,11 @@
   max-width: 1500px;
   margin: 0 auto;
   background-color: #FFFFFF;
-  
 }
 
 .hero-section {
   position: relative;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
+  height: 350px;
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -17,26 +14,45 @@
   width: 100%;
   gap: 1rem;
   flex-wrap: wrap;
+  z-index: 70;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
 }
 
 .banner-img {
-  height: 100%;
-  width: 15rem;
+  height: 80%;
+  width: 12rem;
   margin-right: 20px;
-  
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 90;
 }
 
 .hero-text {
-padding: 20px;
-border-radius: 10px;
- display: flex;
- flex-direction: column;
-
- p{
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  
- }
+  z-index: 1;
+}
+
+.hero-text p {
+  position: relative;
 }
 
 .details-section {
@@ -47,6 +63,11 @@ border-radius: 10px;
   gap: 20px;
   padding: 2rem;
   flex-wrap: wrap;
+  position: relative;
+  top:-2.2rem;
+  background-color: #FFFFFF;
+  z-index: 80;;
+
 }
 
 .details-section .summary, .details-section .skills {
@@ -67,25 +88,15 @@ border-radius: 10px;
   list-style-type: disc;
   padding-left: 20px;
 }
-.summary P{
+
+.summary p {
   text-align: left;
   color: black;
 }
 
-/*.audio-player {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background-color: #FFFFFF;
-  padding: 10px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for separation */
-/*  z-index: 1000; /* Ensure it's above other content */
-
 .audio-player {
   flex-grow: 1;
 }
-
 
 .like-section {
   margin-top: 1rem;
@@ -94,23 +105,20 @@ border-radius: 10px;
 
 .like-button {
   background: none;
-  padding:0px;
+  padding: 0;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   color: white;
   background-color: transparent;
-  &:hover{
-    background-color: transparent;
-    color: #FFFFFF;
-  }
 }
 
-.like-button.liked {
- 
+.like-button:hover {
+  background-color: transparent;
+  color: #FFFFFF;
 }
+
 .audio-control-section {
-  border:1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,13 +126,14 @@ border-radius: 10px;
   bottom: 0;
   left: 0;
   width: 100%;
-   padding: 1rem;
-   z-index: 1100;
+  padding: 1rem;
+  z-index: 1100;
+  background-color: #FFFFFF;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .banner-img-small {
   width: 50px;
-  
   margin-right: 1rem;
 }
 
@@ -132,12 +141,11 @@ border-radius: 10px;
   .hero-section {
     flex-direction: column;
     text-align: center;
-    
   }
 
   .hero-text {
     margin-top: 20px;
-    left:-2.7rem;
+    left: -2.7rem;
     position: relative;
   }
 
@@ -151,13 +159,19 @@ border-radius: 10px;
     margin: 1rem 0;
   }
 }
-.popular p{
+
+.popular p {
   font-size: 1.4em;
   font-weight: bolder;
   text-align: left;
   margin-left: 4rem;
   margin-top: 2rem;
-  color:black;
+  color: black;
+}
+.AudioText {
+  color: white;
+  text-align: left;
+  font-size: 1rem;
 }
 @media (min-width: 768px) {
   .hero-section {
@@ -174,21 +188,23 @@ border-radius: 10px;
     flex: 1;
   }
 }
-@media (max-width:652px) {
+
+@media (max-width: 652px) {
   .hero-text {
     font-size: small;
-    width:15rem;
-    padding:1rem;
-    
-      
-    h1{
-      font-size: medium;
-      width:9rem;
-    }
+    width: 15rem;
+    padding: 1rem;
   }
-  .banner-img{
-    width:10rem;
+
+  .hero-text h1 {
+    font-size: medium;
+    width: 9rem;
   }
-  
-  
+
+  .banner-img {
+    width: 10rem;
+  }
+  .AudioText {
+    font-size: 0.8rem;
+  }
 }

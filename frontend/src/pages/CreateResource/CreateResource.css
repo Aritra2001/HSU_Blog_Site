@@ -177,7 +177,8 @@ button:hover {
 }.submit-button {
   background-color: #6637ED;
   border-radius: 51px;
-  width: 40%;
+  width: 50%;
+  height: 55px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
@@ -213,5 +214,27 @@ button:hover {
 
   button {
     padding: 10px;
+  }
+}
+@media(max-width:350px){
+  .custom-file-input{
+    height:170px;
+    width:100%
+  }
+  .upload{
+    top:3rem;
+  }
+  .row{
+    gap:1rem;
+  }
+  .submit-button{
+    width:95%;
+    height:55px;
+  }
+}
+@media(max-width:350px){
+  .custom-file-input{
+    height:170px;
+    width:100%
   }
 }

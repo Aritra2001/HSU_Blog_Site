@@ -1,7 +1,9 @@
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import heroBg from '../../assets/heroBg.png'; // Import the background image
+import heroBg from '../../assets/heroBg.png';
 import PopularAudio from '../../components/PopularAudio/PopularAudio';
 import './AudioBookDetail.css';
 
@@ -45,6 +47,28 @@ function AudioBookDetail() {
     }
   };
 
+  useEffect(() => {
+    // Update audio element when audioBook changes
+    if (audioBook) {
+      const audioPlayer = document.getElementById('audio');
+      if (audioPlayer) {
+        audioPlayer.src = audioBook.audio;
+        audioPlayer.load();
+        audioPlayer.muted=false
+        // Check if user has interacted with the page
+        const playPromise = audioPlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            // Autoplay started successfully
+          }).catch((error) => {
+            console.error('Autoplay could not start:', error);
+            // Handle autoplay restriction: show a play button or instructions to user
+          });
+        }
+      }
+    }
+  }, [audioBook]);
+
   if (loading) {
     return <div className="loading-spinner">Loading...</div>;
   }
@@ -63,11 +87,17 @@ function AudioBookDetail() {
 
   return (
     <div className="audio-book-detail">
-      <div className="hero-section" style={{ backgroundImage: `url(${heroBg})` }}>
+      <div className="hero-section">
+        <div className="hero-bg">
+          <img src={heroBg} alt="Background" className="hero-bg-img" />
+        </div>
         <img src={audioBook.audioBookPoster} alt={`${audioBook.AudioBookName} Poster`} className="banner-img" />
         <div className="hero-text">
-          <h1>{audioBook.AudioBookName}</h1>
-          <p style={{ color: "white", textAlign: "left" }}><strong>Written By :</strong>{audioBook.AuthorName}</p>
+          <h1 className='AudioName'>{audioBook.AudioBookName}</h1>
+          <p className='AudioText' ><strong>Written By :</strong>{audioBook.AuthorName}</p>
+          <p className='AudioText'  ><strong>Duration :</strong>{audioBook.duration} Minutes</p>
+          <p className='AudioText'  ><strong>Share</strong>
+          <FontAwesomeIcon icon={faShareAlt} style={{ marginLeft: '10px' ,fontSize:"1.6rem"}} /></p>
           <div className="like-section">
             <button 
               className={`like-button ${liked ? 'liked' : ''}`}
@@ -94,8 +124,9 @@ function AudioBookDetail() {
       </div>
       <div className="audio-control-section">
         <img src={audioBook.audioBookPoster} alt={`${audioBook.AudioBookName} Poster`} className="banner-img-small" />
-        <audio controls className="audio-player">
-          <source src={audioBook.audio} type="audio/mpeg" />
+        {/* Audio element for visible controls */}
+        <audio controls autoPlay className="audio-player" id="audio" muted >
+          <source src={audioBook.audio} type="audio/mp3" />
           Your browser does not support the audio element.
         </audio>
       </div>

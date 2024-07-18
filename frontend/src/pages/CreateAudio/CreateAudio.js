@@ -12,7 +12,7 @@ function CreateAudio() {
     permalink: '',
     writer: '',
     summary: '',
-    color: '',
+    color: '#000000',
     type: '',
     email: '',
     category: [],
@@ -195,7 +195,7 @@ function CreateAudio() {
           permalink: '',
           writer: '',
           summary: '',
-          color: '',
+          color: '#000000',
           type: '',
           email: '',
           category: [],
@@ -318,7 +318,7 @@ function CreateAudio() {
           </div>
           <div className="form-group">
           <label htmlFor="color">Color:<span className="required">*</span></label>
-          <input type="color" id="color" name="color" value={formData.color} onChange={handleInputChange} />
+          <input type="text" id="color" name="color" value={formData.color} onChange={handleInputChange} />
         </div>
 
         </div>

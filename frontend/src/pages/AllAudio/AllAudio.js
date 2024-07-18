@@ -10,7 +10,7 @@ import './AllAudio.css';
 function AllAudio() {
   const [audiobooks, setAudiobooks] = useState([]);
   const [filteredAudiobooks, setFilteredAudiobooks] = useState([]);
-  const [SearchedAudiobooks, setSearchedAudiobooks] = useState([]);
+  const [searchedAudiobooks, setSearchedAudiobooks] = useState([]);
   const [category, setCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearching, setIsSearching] = useState(false); // Track if a search is being performed
@@ -68,17 +68,40 @@ function AllAudio() {
   return (
     <>
       <div className="all-audio-container">
-        <div className="filter-container">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={7}
+          modules={[Navigation, Pagination, Autoplay, Keyboard]}
+         
+          loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+              autoplay:false
+            },
+            1020:
+            {
+              slidesPerView: 7,
+              spaceBetween: 20,
+              
+
+            }
+          }}
+          
+          className="filter-container"
+        >
           {['All', 'Space Technology', 'Self Help', 'Marketing', 'Entrepreneurship', 'Astronomy', 'AI & ML'].map((cat) => (
-            <button
-              key={cat}
-              className={`category-button ${category === cat ? 'selected' : ''}`}
-              onClick={() => handleCategoryChange(cat)}
-            >
-              {cat}
-            </button>
+            <SwiperSlide key={cat}>
+              <button
+                className={`category-button ${category === cat ? 'selected' : ''}`}
+                onClick={() => handleCategoryChange(cat)}
+              >
+                {cat}
+              </button>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
         <Swiper
           spaceBetween={30}
@@ -115,24 +138,21 @@ function AllAudio() {
         >
           {filteredAudiobooks.map((audio) => (
             <SwiperSlide key={audio._id} onClick={() => navigate(`/audio/${audio._id}`)}>
-              <div className="audio-box" style={{
+              <div className="audio-boxF" style={{
                 backgroundColor: audio.color,
                 position: 'relative',
                 width: '100%',
-                height: '110%',
-                padding: "2rem"
+                
+                paddingTop:"2.5rem",
+                paddingLeft:"1rem",
+                paddingRight:"1rem"
+                
               }}>
                 <img
-                  style={{
-                    width: '100%',
-                    height: '120%',
-                    objectFit: 'cover',
-                    top: 0,
-                    left: 0
-                  }}
+                  
                   src={audio.audioBookPoster}
                   alt={audio.AudioBookName}
-                  className="audio-banner"
+                  className="audio-bannerFilter"
                 />
               </div>
             </SwiperSlide>
@@ -143,7 +163,7 @@ function AllAudio() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p>Popular</p>
             <div className="search-bar-container">
-              <form onSubmit={handleSearch} style={{display:"flex"}}>
+              <form onSubmit={handleSearch} style={{display:"flex",gap:"1.5rem"}}>
                 <input
                   type="text"
                   placeholder="Search audiobooks..."
@@ -190,20 +210,22 @@ function AllAudio() {
               }}
               className="swiper-container"
             >
-              {SearchedAudiobooks.map(audio => (
+              {searchedAudiobooks.map(audio => (
                 <SwiperSlide key={audio._id} onClick={() => navigate(`/audio/${audio._id}`)}>
                   <div className="audio-box" style={{
                     backgroundColor: audio.color,
                     position: 'relative',
                     width: '100%',
                     height: '110%',
-                    padding: "2rem"
+                    padding: "2rem",
+                    
                   }}>
                     <img
                       style={{
                         width: '100%',
                         height: '120%',
                         objectFit: 'cover',
+                        position:"relative",
                         top: 0,
                         left: 0
                       }}

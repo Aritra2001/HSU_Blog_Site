@@ -216,4 +216,27 @@ body {
       padding: 10px;
     }
   }
+  @media(max-width:350px){
+    .custom-file-input{
+      height:170px;
+      width:100%
+    }
+    .upload{
+      top:3rem;
+    }
+    .row{
+      gap:1rem;
+    }
+    .submit-button{
+      width:95%;
+      height:55px;
+    }
+  }
+  @media(max-width:350px){
+    .custom-file-input{
+      height:170px;
+      width:100%
+    }
+  }
+  
   

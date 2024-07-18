@@ -34,7 +34,7 @@ body {
     gap: 0.5rem;
   }
   
-  #name, #writer, #summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
+  #name, #writer,.category,.whatYouWillLearn#summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
     border-radius: 51px;
     border: 1px solid #000;
     background: #FFF;
@@ -230,4 +230,24 @@ body {
       padding: 10px;
     }
   }
-  
+  @media(max-width:350px){
+    .custom-file-input{
+      height:170px;
+      width:100%
+    }
+  }@media(max-width:350px){
+    .custom-file-input{
+      height:170px;
+      width:100%
+    }
+    .upload{
+      top:3rem;
+    }
+    .row{
+      gap:1rem;
+    }
+    .submit-button{
+      width:95%;
+      height:55px;
+    }
+  }
