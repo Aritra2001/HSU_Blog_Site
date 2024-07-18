@@ -35,7 +35,7 @@ body {
   }
   
   #name, #writer,#category,#whatYouWillLearn,#summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
-    border-radius: 51px!important;
+    border-radius: 51px;
     border: 1px solid #000;
     background: #FFF;
     height: 55px;
@@ -43,6 +43,9 @@ body {
     margin-right: auto;
     width: 95%;
   }
+  .multiSelectContainer .searchWrapper {
+    border-radius: 50px !important;
+}
   .searchWrapper{
     border-radius: 51px;
     border: 1px solid #000;

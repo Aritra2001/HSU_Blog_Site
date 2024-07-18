@@ -32,7 +32,12 @@ function CreateAudio() {
   const handleAudioClick = () => {
     document.getElementById('audio').click();
   };
-
+  window.onload = function() {
+    var searchWrappers = document.querySelectorAll('.searchWrapper');
+    searchWrappers.forEach((element) => {
+        element.style.removeProperty('border-radius');
+    });
+};
   // Function to handle input change (text inputs)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
