@@ -292,14 +292,14 @@ function CreateAudio() {
             />
           </div>
         </div>
-        <div className="row">
+        <div className="row" >
           <div className="form-group">
             <label htmlFor="permalink">Permalink<span className="required">*</span></label>
             <input type="text" id="permalink" name="permalink" value={formData.permalink} readOnly />
           </div>
           <div className="form-group category-container">
             <label htmlFor="whatYouWillLearn">What You Will Learn<span className="required">*</span></label>
-            <Multiselect
+            <Multiselect 
               isObject={false}
               selectedValues={formData.whatYouWillLearn}
               onSelect={(selectedList) => handleSelectChange(selectedList, 'whatYouWillLearn')}
@@ -308,12 +308,13 @@ function CreateAudio() {
               displayValue="name"
               id="whatYouWillLearn"
               placeholder=""
+              style={{borderRadius:"0rem"}}
             />
           </div>
         </div>
         <div className="row">
           <div className="form-group">
-            <label htmlFor="securityKey">Security Key (leave blank if don't have)</label>
+            <label htmlFor="securityKey">Security Key<span className="required">*</span></label>
             <input type="text" id="securityKey" name="securityKey" value={formData.securityKey} onChange={handleInputChange} />
           </div>
           <div className="form-group">
