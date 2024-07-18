@@ -34,7 +34,7 @@ body {
     gap: 0.5rem;
   }
   
-  #name, #writer,.category,.whatYouWillLearn#summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
+  #name, #writer,#category,#whatYouWillLearn#summary, .searchWrapper, #email, #type, #permalink, #securityKey, #phone {
     border-radius: 51px;
     border: 1px solid #000;
     background: #FFF;
