@@ -62,8 +62,9 @@ h1 {
 }
 
 .chip {
-  background-color: #D9D9D9;
-  color: #2E2E2E;
+  background-color: #D9D9D9!important;
+  color: #2E2E2E!important;
+  display: inline!important;
 }
 
 .multiSelectContainer input {

@@ -115,7 +115,7 @@ function AudioBookDetail() {
         </div>
         <div className="skills">
           <h2>What You Will Learn</h2>
-          <ul style={{ width: "6rem", textAlign: "left" }}>
+          <ul style={{ width: "6rem", textAlign: "left" ,fontSize:"22px"}}>
             {skillsArray.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}

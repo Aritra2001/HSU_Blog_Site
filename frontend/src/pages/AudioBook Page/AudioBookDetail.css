@@ -92,6 +92,7 @@
 .summary p {
   text-align: left;
   color: black;
+  font-size: 25px;
 }
 
 .audio-player {
@@ -137,6 +138,12 @@
   margin-right: 1rem;
 }
 
+.AudioName {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 @media (max-width: 767px) {
   .hero-section {
     flex-direction: column;
