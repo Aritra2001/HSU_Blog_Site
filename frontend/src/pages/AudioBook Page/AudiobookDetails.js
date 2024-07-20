@@ -1,9 +1,10 @@
-import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { BiLike, BiSolidLike } from "react-icons/bi";
+import { FaCheckCircle } from "react-icons/fa";
+import { RiShareForwardLine } from "react-icons/ri";
 import { useParams } from 'react-router-dom';
-import heroBg from '../../assets/heroBg.png';
+import heroBg from '../../assets/HeroBg.svg';
 import PopularAudio from '../../components/PopularAudio/PopularAudio';
 import './AudioBookDetail.css';
 
@@ -94,16 +95,17 @@ function AudioBookDetail() {
         <img src={audioBook.audioBookPoster} alt={`${audioBook.AudioBookName} Poster`} className="banner-img" />
         <div className="hero-text">
           <h1 className='AudioName'>{audioBook.AudioBookName}</h1>
-          <p className='AudioText' ><strong>Written By :</strong>{audioBook.AuthorName}</p>
-          <p className='AudioText'  ><strong>Duration :</strong>{audioBook.duration} Minutes</p>
-          <p className='AudioText'  ><strong>Share</strong>
-          <FontAwesomeIcon icon={faShareAlt} style={{ marginLeft: '10px' ,fontSize:"1.6rem"}} /></p>
+          <p className='AudioText' ><strong>Written By   </strong>{audioBook.AuthorName}</p>
+          <p className='AudioText'  ><strong>Duration   </strong>{Math.round(audioBook.duration)} Minutes</p>
+          <p className='AudioText' style={{display:'flex'}} ><strong style={{top:"0.2rem",position:"relative"}}>Share</strong>
+          <RiShareForwardLine style={{fontSize:"1.6rem",marginTop:"0.2rem"}} /></p>
           <div className="like-section">
             <button 
               className={`like-button ${liked ? 'liked' : ''}`}
               onClick={handleLike}
-            >
-              <i className={`fa${liked ? 's' : 'r'} fa-thumbs-up`}></i> {likes}
+              style={{display:"flex",gap:"0.3rem"}}
+            >{liked?<BiSolidLike/>:
+             <BiLike/>}{likes}likes
             </button>
           </div>
         </div>
@@ -115,9 +117,11 @@ function AudioBookDetail() {
         </div>
         <div className="skills">
           <h2>What You Will Learn</h2>
-          <ul style={{ width: "100%", textAlign: "left" ,fontSize:"22px"}}>
-            {skillsArray.map((skill, index) => (
-              <li key={index}>{skill}</li>
+          <ul style={{ width: "100%", textAlign: "left" ,fontSize:"17px",color:"#2E2E2E"}}>
+          {skillsArray.map((skill, index) => (
+              <li key={index}>
+                <FaCheckCircle style={{left:"-1rem",position:"relative"}}/> {skill}
+              </li>
             ))}
           </ul>
         </div>

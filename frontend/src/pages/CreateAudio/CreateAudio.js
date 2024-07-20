@@ -48,8 +48,8 @@ function CreateAudio() {
       permalink: name === 'name' ? `/${value.replace(/\s+/g, '-')}` : prevState.permalink
     }));
     // Check summary length and show info message if necessary
-    if (name === 'summary' && value.split(/\s+/).length > 50) {
-      showInfoToast('Summary should not exceed 50 words.');
+    if (name === 'summary' && value.split(/\s+/).length > 75) {
+      showInfoToast('Summary should not exceed 75 words.');
     }
   };
 

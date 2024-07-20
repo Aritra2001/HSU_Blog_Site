@@ -68,21 +68,22 @@ function AllAudio() {
   return (
     <>
       <div className="all-audio-container">
+        <p>Audiobook Summaries</p>
         <Swiper
           spaceBetween={10}
-          slidesPerView={7}
-          modules={[Navigation, Pagination, Autoplay, Keyboard]}
+          slidesPerView={6}
+          modules={[Navigation, Pagination, Keyboard]}
          
           loop={true}
           breakpoints={{
             320: {
-              slidesPerView: 3,
-              spaceBetween: 20,
+              slidesPerView: 2,
+              spaceBetween: 40,
               autoplay:false
             },
             1020:
             {
-              slidesPerView: 7,
+              slidesPerView: 6,
               spaceBetween: 20,
               
 
@@ -91,7 +92,7 @@ function AllAudio() {
           
           className="filter-container"
         >
-          {['All', 'Space Technology', 'Self Help', 'Marketing', 'Entrepreneurship', 'Astronomy', 'AI & ML'].map((cat) => (
+          {[ 'Space Technology', 'Self Help', 'Marketing', 'Entrepreneurship', 'Astronomy', 'AI & ML'].map((cat) => (
             <SwiperSlide key={cat}>
               <button
                 className={`category-button ${category === cat ? 'selected' : ''}`}
@@ -141,9 +142,9 @@ function AllAudio() {
               <div className="audio-boxF" style={{
                 backgroundColor: audio.color,
                 position: 'relative',
-                width: '100%',
+                width: '250px',
                 
-                paddingTop:"2.5rem",
+                paddingTop:"3.2rem",
                 paddingLeft:"1rem",
                 paddingRight:"1rem"
                 

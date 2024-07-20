@@ -1,6 +1,14 @@
 .all-audio-container {
   padding: 20px;
   background-color: #ffffff;
+  p{
+    font-size: 1.4em;
+    font-weight: bolder;
+    text-align: left;
+    margin-left: 4rem;
+    margin-top: 2rem;
+    color: black;
+  }
 }
 
 .filter-container {
@@ -9,6 +17,8 @@
   margin-bottom: 30px;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 .category-button {
@@ -71,7 +81,7 @@
   height: 120%;
   object-fit: cover;
   position: relative;
-  top: -2.5rem;
+  top: -2.3rem;
   bottom: 0;
   left: 0;
 }
@@ -169,7 +179,8 @@ p {
   }
   .audio-bannerFilter{
     height: 100%;
-    top:-0.1rem
+    top:-0.0rem;
+    bottom:2rem;
     
   }
 }
@@ -214,5 +225,12 @@ p {
   
   .search-input {
     font-size: 0.8em; /* Adjust font size for smaller screens */
+  }
+}
+@media(max-width:320px)
+{
+  .filter-container{
+    margin-left: 0;
+    margin-right: 0;
   }
 }
