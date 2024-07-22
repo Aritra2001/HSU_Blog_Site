@@ -297,6 +297,20 @@ const getpopularResources = async (req, res) => {
   }
 }
 
-module.exports = { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource, addLikes, getpopularResources };
+const searchResources = async (req, res) => {
+
+  const { resourceName }  = req.body;
+  const regex = new RegExp( resourceName, 'i');
+
+  try {
+    const resources = await Resource.find({ resourceName: { $regex: regex }}).sort({ createdAt: -1 });
+
+    res.status(200).json(resources);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+module.exports = { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource, addLikes, getpopularResources, searchResources };
 
 
