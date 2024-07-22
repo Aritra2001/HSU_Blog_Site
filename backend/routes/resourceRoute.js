@@ -1,6 +1,6 @@
 const express = require('express');
 const upload = require('../utility/cloudinary');
-const { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource, addLikes, getpopularResources } = require('../controllers/resourceController')
+const { CreateResource, getAcceptedResoures, getPendingResources, categoryFilter, getResouce, updateResource, addLikes, getpopularResources, searchResources } = require('../controllers/resourceController')
 
 
 const router = express.Router();
@@ -20,5 +20,7 @@ router.patch('/updateResource/:id', updateResource);
 router.post('/resourcelikes/:id', addLikes);
 
 router.get('/getpopularResource', getpopularResources);
+
+router.post('/searchResource', searchResources);
 
 module.exports = router;

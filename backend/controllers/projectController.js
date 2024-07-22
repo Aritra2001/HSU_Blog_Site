@@ -299,4 +299,18 @@ const getpopularProjects = async (req, res) => {
   }
 }
 
-module.exports = { CreateProject, getAcceptedProjects, getPendingProjects, categoryFilter, getProject, updateProject, addLikes, getpopularProjects };
+const searchProjects = async (req, res) => {
+
+  const { ProjectName }  = req.body;
+  const regex = new RegExp( ProjectName, 'i');
+
+  try {
+    const projects = await Project.find({ ProjectName: { $regex: regex }}).sort({ createdAt: -1 });
+
+    res.status(200).json(projects);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+module.exports = { CreateProject, getAcceptedProjects, getPendingProjects, categoryFilter, getProject, updateProject, addLikes, getpopularProjects, searchProjects };
