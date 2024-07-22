@@ -76,7 +76,7 @@ function AllAudio() {
          
           loop={true}
           breakpoints={{
-            320: {
+            350: {
               slidesPerView: 2,
               spaceBetween: 40,
               autoplay:false

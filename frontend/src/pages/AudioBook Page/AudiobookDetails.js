@@ -5,6 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { RiShareForwardLine } from "react-icons/ri";
 import { useParams } from 'react-router-dom';
 import heroBg from '../../assets/HeroBg.svg';
+import invite from '../../assets/Invite.svg';
 import PopularAudio from '../../components/PopularAudio/PopularAudio';
 import './AudioBookDetail.css';
 
@@ -69,7 +70,27 @@ function AudioBookDetail() {
       }
     }
   }, [audioBook]);
-
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: audioBook.AudioBookName,
+        text: `Check out this audiobook: ${audioBook.AudioBookName}`,
+        url: window.location.href,
+      }).catch((error) => console.error('Error sharing:', error));
+    } else {
+      // Fallback for browsers that don't support the share API
+      alert('Share feature is not supported in this browser.');
+    }
+  };
+  const handleCopyUrl = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        alert('URL copied to clipboard');
+      })
+      .catch((error) => {
+        console.error('Error copying URL:', error);
+      });
+  };
   if (loading) {
     return <div className="loading-spinner">Loading...</div>;
   }
@@ -98,7 +119,7 @@ function AudioBookDetail() {
           <p className='AudioText' ><strong>Written By   </strong>{audioBook.AuthorName}</p>
           <p className='AudioText'  ><strong>Duration   </strong>{Math.round(audioBook.duration)} Minutes</p>
           <p className='AudioText' style={{display:'flex'}} ><strong style={{top:"0.2rem",position:"relative"}}>Share</strong>
-          <RiShareForwardLine style={{fontSize:"1.6rem",marginTop:"0.2rem"}} /></p>
+          <RiShareForwardLine style={{fontSize:"1.6rem",marginTop:"0.2rem"}}  onClick={handleShare} /></p>
           <div className="like-section">
             <button 
               className={`like-button ${liked ? 'liked' : ''}`}
@@ -115,6 +136,7 @@ function AudioBookDetail() {
           <h2>Summary</h2>
           <p>{audioBook.description}</p>
         </div>
+        <div className="column " style={{display:"flex",flexDirection:"column"}}>
         <div className="skills">
           <h2>What You Will Learn</h2>
           <ul style={{ width: "100%", textAlign: "left" ,fontSize:"17px",color:"#2E2E2E"}}>
@@ -124,6 +146,8 @@ function AudioBookDetail() {
               </li>
             ))}
           </ul>
+        </div>
+        <img className='InviteImg' src={invite} alt="" srcset="" onClick={handleCopyUrl}/>
         </div>
       </div>
       <div className="audio-control-section">

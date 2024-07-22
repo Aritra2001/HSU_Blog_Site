@@ -69,7 +69,9 @@
   z-index: 80;;
 
 }
-
+.details-section .summary{
+  margin: 0 !important;;
+}
 .details-section .summary, .details-section .skills {
   flex: 1 1 100%;
   padding: 20px;
@@ -172,9 +174,10 @@
     padding: 1rem;
   }
 
-  .details-section .summary, .details-section .skills {
+  .details-section .summary, .details-section .skills,.InviteImg {
     flex: 1 1 100%;
     margin: 1rem 0;
+    width:100%;
   }
 }
 
@@ -192,6 +195,7 @@
   font-size: 1.4rem;
  
 }
+
 @media (min-width: 768px) {
   .hero-section {
     gap: 5rem;
@@ -225,5 +229,18 @@
   }
   .AudioText {
     font-size: 0.8rem;
+  }
+}
+@media(max-width:350px)
+{
+  .column{
+    width:100%;
+  }
+  .InviteImg{
+    width:20rem;
+    width:100%;
+  }
+  .like-button{
+    font-size: 1rem;
   }
 }

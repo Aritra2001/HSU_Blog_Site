@@ -227,7 +227,7 @@ p {
     font-size: 0.8em; /* Adjust font size for smaller screens */
   }
 }
-@media(max-width:320px)
+@media(max-width:340px)
 {
   .filter-container{
     margin-left: 0;
