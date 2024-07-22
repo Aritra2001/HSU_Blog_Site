@@ -57,6 +57,7 @@
 
 .details-section {
   display: flex;
+  
   justify-content: space-between;
   padding-top: 5rem;
   border-radius: 3rem;
@@ -70,10 +71,15 @@
 
 }
 .details-section .summary{
-  margin: 0 !important;;
+  margin: 0 !important;
+  width: 50%;
+  
+}
+.details-section .column{
+  width:50%;
 }
 .details-section .summary, .details-section .skills {
-  flex: 1 1 100%;
+ 
   padding: 20px;
   border: 1px solid #d3d0d0;
   border-radius: 10px;
@@ -234,7 +240,7 @@
 @media(max-width:350px)
 {
   .column{
-    width:100%;
+    width:100%!important;
   }
   .InviteImg{
     width:20rem;
@@ -242,5 +248,13 @@
   }
   .like-button{
     font-size: 1rem;
+  }
+}
+@media(min-width:1000px) and  (max-width:1073px){
+  .details-section .summary{
+    width: 10%;
+  }
+  .details-section .column{
+    width:15rem;
   }
 }
