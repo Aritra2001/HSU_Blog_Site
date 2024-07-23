@@ -76,7 +76,7 @@ function AllAudio() {
          
           loop={true}
           breakpoints={{
-            350: {
+            320: {
               slidesPerView: 2,
               spaceBetween: 40,
               autoplay:false
@@ -155,7 +155,9 @@ function AllAudio() {
                   alt={audio.AudioBookName}
                   className="audio-bannerFilter"
                 />
+                <div className="audio-duration">{Math.round(audio.duration)} mins</div>
               </div>
+
             </SwiperSlide>
           ))}
         </Swiper>

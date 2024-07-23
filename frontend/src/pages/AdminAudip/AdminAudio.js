@@ -1,21 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useHistory from react-router-dom
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { showErrorToast, showSuccessToast } from '../../Utility/toastUtils';
-import './AdminAudio.css'; // Import your CSS file for styling
+import CustomModal from '../../components/CustomModal/CustomModal'; // Import CustomModal component
+import './AdminAudio.css';
 
 const AdminAudioBooks = () => {
-  const navigate = useNavigate(); // Initialize useHistory
-
+  const navigate = useNavigate();
   const [audioBooks, setAudioBooks] = useState([]);
-  const [editingBook, setEditingBook] = useState(null); // State to manage the book being edited
+  const [editingBook, setEditingBook] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [bookToDelete, setBookToDelete] = useState(null);
 
   useEffect(() => {
     const fetchAudioBooks = async () => {
       try {
         const response = await axios.get('https://hsu-blog-site.onrender.com/api/getAudioBooks');
-        setAudioBooks(response.data); // Assuming backend returns an array of audiobooks
+        setAudioBooks(response.data);
       } catch (error) {
         console.error('Error fetching audiobooks:', error);
       }
@@ -36,17 +38,27 @@ const AdminAudioBooks = () => {
   };
 
   const handleEdit = (book) => {
-    // Navigate to editAudio/:id
     navigate(`/editAudio/${book._id}`);
   };
 
-  const handleEditClose = () => {
-    setEditingBook(null); // Close the edit modal
+  const confirmDelete = (book) => {
+    setBookToDelete(book);
+    setShowModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    handleDelete(bookToDelete._id);
+    setShowModal(false);
+    setBookToDelete(null);
+  };
+
+  const handleCancelDelete = () => {
+    setShowModal(false);
+    setBookToDelete(null);
   };
 
   return (
     <div className="admin-audiobooks">
-       
       <h1>Admin Control - AudioBooks</h1>
       <div className="table-container">
         <table className="content-table">
@@ -68,7 +80,7 @@ const AdminAudioBooks = () => {
                 <td>{new Date(book.createdAt).toLocaleDateString()}</td>
                 <td>
                   <button onClick={() => handleEdit(book)} className="edit-button">Edit</button>
-                  <button onClick={() => handleDelete(book._id)} className="delete-button">Delete</button>
+                  <button onClick={() => confirmDelete(book)} className="delete-button">Delete</button>
                 </td>
               </tr>
             ))}
@@ -76,6 +88,12 @@ const AdminAudioBooks = () => {
         </table>
       </div>
       <ToastContainer />
+      <CustomModal
+        show={showModal}
+        message="Are you sure you want to delete this audiobook?"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   );
 };

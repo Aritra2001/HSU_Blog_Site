@@ -12,9 +12,11 @@
 }
 
 .filter-container {
+  top:-2rem;
+  position: relative;
   display: flex;
   gap: 10px;
-  margin-bottom: 30px;
+  
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-left: 6rem;
@@ -135,6 +137,18 @@ p {
 .swiper-container {
   height: 300px;
 }
+.audio-duration {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(31, 31, 31, 0.30);;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1;
+}
 
 @media (max-width: 768px) {
   .audio-grid {
@@ -227,7 +241,7 @@ p {
     font-size: 0.8em; /* Adjust font size for smaller screens */
   }
 }
-@media(max-width:340px)
+@media(max-width:370px)
 {
   .filter-container{
     margin-left: 0;
