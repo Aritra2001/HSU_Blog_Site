@@ -1,0 +1,25 @@
+.all-resources-container{
+    padding: 20px;
+  background-color: #ffffff;
+  p{
+    font-size: 1.4em;
+    font-weight: bolder;
+    text-align: left;
+    margin-left: 4rem;
+    margin-top: 2rem;
+    color: black;
+  }
+  .search-bar-container{
+    
+  }
+}
+.popular p{
+   
+        color: #000;
+        font-size: 1.4em;
+        font-weight: bolder;
+        margin-left: 4rem;
+        margin-top: 2rem;
+        text-align: left;
+    
+}

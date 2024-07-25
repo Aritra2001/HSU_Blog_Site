@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import AdminAudioBooks from './pages/AdminAudip/AdminAudio';
 import AllAudio from './pages/AllAudio/AllAudio';
+import AllResource from './pages/AllResource/AllResource';
 import AudioBookDetail from './pages/AudioBook Page/AudiobookDetails';
 import CreateAudio from './pages/CreateAudio/CreateAudio';
 import CreateProject from './pages/CreateProject/CreateProject';
@@ -28,6 +29,8 @@ function App() {
         <Route path='/allAudio' element={<AllAudio />} />
         <Route path='/AdminAudio' element={<AdminAudioBooks />} />
         <Route path='/EditAudio/:id' element={<EditAudio />} />
+        {/* Resource Routes */} 
+        <Route path='/allResource' element={<AllResource />} />
 
       </Routes>
       <Footer/>

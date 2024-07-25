@@ -136,6 +136,8 @@ p {
 
 .swiper-container {
   height: 300px;
+  position: relative;
+  top:-2rem;
 }
 .audio-duration {
   position: absolute;
@@ -241,10 +243,15 @@ p {
     font-size: 0.8em; /* Adjust font size for smaller screens */
   }
 }
-@media(max-width:370px)
+@media(max-width:425px)
 {
   .filter-container{
     margin-left: 0;
     margin-right: 0;
+  }
+  .swiper-container {
+    height: 300px;
+    position: relative;
+    top:-5rem;
   }
 }
