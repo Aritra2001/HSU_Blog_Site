@@ -212,7 +212,7 @@ const updateProject = async (req, res) => {
                 <td style="width: 100%;">
                 <a href="https://www.hexstaruniverse.com"><span><img src="${img_link}" alt="Hex-Star Universe" style="width: 120px; height: auto;"></span></a>
                 <p><span>Hi <b>${project.AuthorName}</b>, Congratulations!</span></p>
-                <p>Your submission has been approved. View your submission here 👉🏻 <a href='https://www.hexstaruniverse.com'> Click here</a>.</P>
+                <p>Your submission has been approved. View your submission here 👉🏻 <a href='https://skillquest.hexstaruniverse.com/viewProject/${id}'> Click here</a>.</P>
                 <p>Thanks & Regards, <br>Team Hex-Star Universe</p>
                 </td>
                 </tr>
@@ -305,7 +305,7 @@ const searchProjects = async (req, res) => {
   const regex = new RegExp( ProjectName, 'i');
 
   try {
-    const projects = await Project.find({ ProjectName: { $regex: regex }}).sort({ createdAt: -1 });
+    const projects = await Project.find({ ProjectName: { $regex: regex }, accepted: true}).sort({ createdAt: -1 });
 
     res.status(200).json(projects);
   } catch (error) {
