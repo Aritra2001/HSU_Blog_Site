@@ -256,6 +256,10 @@ p {
     position: relative;
     top:-5rem;
   }
+  .all-audio-container p {
+    margin-left: 0;
+  }
+    
 }
 @media(max-width:375px)
 {
