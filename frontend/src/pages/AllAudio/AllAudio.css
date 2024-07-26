@@ -204,7 +204,7 @@ p {
   display: flex;
   align-items: center;
   flex-grow: 1; /* Allow the search bar to grow to fill available space */
-  max-width: 300px; /* Limit width to maintain responsiveness */
+  max-width: 270px; /* Limit width to maintain responsiveness */
   gap:1rem;
 }
 
@@ -224,6 +224,8 @@ p {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+  position:relative;
+  left:-2rem;
 }
 
 .search-button:hover {

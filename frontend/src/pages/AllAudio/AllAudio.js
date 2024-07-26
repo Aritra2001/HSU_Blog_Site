@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -178,15 +179,15 @@ function AllAudio() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p>Popular</p>
             <div className="search-bar-container">
-              <form onSubmit={handleSearch} style={{display:"flex",gap:"1.5rem"}}>
+              <form onSubmit={handleSearch} style={{display:"flex"}}>
                 <input
                   type="text"
-                  placeholder="Search audiobooks..."
+                  placeholder="Search"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="search-input"
                 />
-                <button type="submit" className="search-button">Search</button>
+                <button type="submit" className="search-button"><FaSearch /></button>
               </form>
             </div>
           </div>
