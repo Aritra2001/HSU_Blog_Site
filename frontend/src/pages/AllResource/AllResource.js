@@ -68,7 +68,7 @@ function AllResource() {
   return (
     <div className="all-resources-container">
       <div style={{display:"flex",justifyContent:"space-between"}}>
-      <h1>All Resources</h1>
+      <h1> Resources</h1>
       <div className="search-bar-container">
         <form onSubmit={handleSearch} style={{ display: "flex", gap: "1.5rem" }}>
           <input
@@ -166,7 +166,7 @@ function AllResource() {
               />
               <div className="resource-details">
                 <h3>{resource.resourceName}</h3>
-                <p>{resource.description}</p>
+               
               </div>
             </div>
           </SwiperSlide>

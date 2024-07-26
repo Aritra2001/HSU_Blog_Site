@@ -86,7 +86,7 @@ body {
   }
   
   .bar.open:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-14px) rotate(-45deg);
   }
   
   @media (max-width: 768px) {
@@ -99,6 +99,7 @@ body {
       width: 100%;
       background-color: #333;
       z-index: 1;
+
     }
   
     .menu.open {
@@ -107,10 +108,21 @@ body {
   
     .hamburger {
       display: flex;
+      height: 2rem;
     }
   
     .instructor-button {
       
+      position: relative;
+    }
+    .logo{
+      width: 5rem;
+    }
+    .navbar{
+      padding :15px 0;
+    }
+    .hamburger{
+      left:-1rem;
       position: relative;
     }
   }

@@ -1,5 +1,6 @@
 .popular-audio-container {
   padding: 20px;
+  margin-top: 3rem;
 }
 
 .swiper-container {
@@ -21,7 +22,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  height: 12rem;
+  height: 100%;
   width: 100%; /* Full width for mobile view */
 }
 
@@ -101,10 +102,41 @@
   }
   
   .audiobook-slide {
-    height: 12rem; /* Increased height for large screens */
+    height: 110%; /* Increased height for large screens */
   }
 
   .slide-imageP {
-    height: 12rem; /* Increased height for large screens */
+    height: 14rem; /* Increased height for large screens */
   }
+}
+@media (max-width: 375px) {
+  .popular-audio-container{
+    margin-top:5rem;
+  }
+  .audiobook-slide{
+    height:100%;
+  }
+ 
+}
+@media (max-width: 320px) {
+  .popular-audio-container{
+    margin-top:5rem;
+  }
+  .audiobook-slide{
+    height:90%;
+  }
+ 
+}
+@media (max-width: 425px) and (min-width:376px){
+  .popular-audio-container{
+    margin-top:6rem;
+  }
+  .audiobook-slide{
+    height:135%;
+  }
+  .slide-imageP{
+    height:17rem
+
+  }
+ 
 }

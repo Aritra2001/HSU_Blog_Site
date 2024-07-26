@@ -187,15 +187,15 @@ p {
     padding: 5px;
   }
   .audio-boxF{
-    height:90%;
+    height:120%;
   }
 
   .audio-banner {
     max-height: 190px;
   }
   .audio-bannerFilter{
-    height: 100%;
-    top:-0.0rem;
+    height: 126%;
+    top:-2.9rem;
     bottom:2rem;
     
   }
@@ -248,10 +248,31 @@ p {
   .filter-container{
     margin-left: 0;
     margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   .swiper-container {
     height: 300px;
     position: relative;
     top:-5rem;
+  }
+}
+@media(max-width:375px)
+{
+  .audio-boxF{
+    height:110%;
+  }
+
+  .audio-banner {
+    max-height: 190px;
+  }
+  .audio-bannerFilter{
+    height: 100%;
+    top:-0.0rem;
+    bottom:2rem;
+    
+  }
+  .popular p{
+    margin-left: 0px;
   }
 }
