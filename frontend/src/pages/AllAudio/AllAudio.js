@@ -32,6 +32,11 @@ function AllAudio() {
   }, []);
 
   const handleCategoryChange = async (selectedCategory) => {
+    if (category === selectedCategory) {
+      setCategory('All');
+      setFilteredAudiobooks(audiobooks);
+      return;
+    }
     setCategory(selectedCategory);
     setIsSearching(false); // Reset search state on category change
 
@@ -176,7 +181,7 @@ function AllAudio() {
         </Swiper>
 
         <div className="popular">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",gap:"2rem" }}>
             <p>Popular</p>
             <div className="search-bar-container">
               <form onSubmit={handleSearch} style={{display:"flex"}}>
@@ -204,7 +209,7 @@ function AllAudio() {
               loop={true}
               breakpoints={{
                 320: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                   spaceBetween: 10,
                 },
                 640: {
@@ -224,7 +229,7 @@ function AllAudio() {
                   spaceBetween: 50,
                 },
               }}
-              className="swiper-container"
+              className="swiper-containerSearched"
             >
               {searchedAudiobooks.map(audio => (
                 <SwiperSlide key={audio._id} onClick={() => navigate(`/audio/${audio._id}`)}>
@@ -232,17 +237,17 @@ function AllAudio() {
                     backgroundColor: audio.color,
                     position: 'relative',
                     width: '100%',
-                    height: '110%',
-                    padding: "2rem",
+                    
+                    
                     
                   }}>
                     <img
                       style={{
-                        width: '100%',
-                        height: '120%',
+                        width: '95%',
+                       
                         objectFit: 'cover',
                         position:"relative",
-                        top: 0,
+                        
                         left: 0
                       }}
                       src={audio.audioBookPoster}

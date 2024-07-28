@@ -80,8 +80,8 @@ function EditAudio() {
       permalink: name === 'name' ? `/${value.replace(/\s+/g, '-')}` : prevState.permalink
     }));
     // Check summary length and show info message if necessary
-    if (name === 'summary' && value.split(/\s+/).length > 50) {
-      showInfoToast('Summary should not exceed 50 words.');
+    if (name === 'summary' && value.split(/\s+/).length > 75) {
+      showInfoToast('Summary should not exceed 75 words.');
     }
   };
 
@@ -170,8 +170,8 @@ function EditAudio() {
     }
 
     // Additional validation for summary length
-    if (summary.split(/\s+/).length > 50) {
-      showInfoToast('Summary should not exceed 50 words.');
+    if (summary.split(/\s+/).length > 75) {
+      showInfoToast('Summary should not exceed 75 words.');
       return;
     }
 
@@ -296,7 +296,7 @@ function EditAudio() {
         </div>
         <div className="row">
           <div className="form-group">
-            <label htmlFor="summary">Small Summary(50 words)<span className="required">*</span></label>
+            <label htmlFor="summary">Small Summary(75 words)<span className="required">*</span></label>
             <input type="text" id="summary" name="summary" value={formData.summary} onChange={handleInputChange} />
           </div>
           <div className="form-group category-container select-arrow">
