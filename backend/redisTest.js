@@ -1,6 +1,7 @@
 const Redis = require('ioredis');
 // Create a Redis client
-const redis = new Redis('redis://red-cqjq9e8gph6c739c9aug:6379');
+
+const redis = new Redis(process.env.REDIS_URL);
 
 // Event listeners for debugging
 redis.on('error', (err) => {

@@ -1,7 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const validator = require('validator');
 const AudioBook = require('../models/createAudioBook');
-const emailQueue = require('../jobs/emailQueue');
+const emailQueue = require('../emailQueue');
 const Subscribers = require('../models/subscriberModel');
 
 
@@ -115,11 +115,11 @@ const createAudioBook = async (req, res) => {
       duration
     });
 
-    // const subscribers = await Subscribers.find({});
+    const subscribers = await Subscribers.find({});
 
-    // subscribers.forEach(sub => {
-    //   emailQueue.add({ email: sub.email, audiobook: audiobook});
-    // })
+    subscribers.forEach(sub => {
+      emailQueue.add({ email: sub.email, audiobook: audiobook});
+    })
 
     res.status(200).json({
       message: 'AudioBook created successfully'

@@ -1,5 +1,4 @@
 const Queue = require('bull');
-require('dotenv').config();
 const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -12,7 +11,6 @@ const emailQueue = new Queue('emailQueue', redis_url);
 emailQueue.process(async (job) => {
 
     const { email, audiobook } = job.data;
-    console.log(audiobook.AudioBookName, audiobook._id);
 
     await resend.emails.send({
         from: 'network@hexstaruniverse.com',
