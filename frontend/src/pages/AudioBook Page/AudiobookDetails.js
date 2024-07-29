@@ -119,7 +119,7 @@ function AudioBookDetail() {
           <p className='AudioText' ><strong>Written By   </strong>{audioBook.AuthorName}</p>
           <p className='AudioText'  ><strong>Duration   </strong>{Math.round(audioBook.duration)} Minutes</p>
           <p className='AudioText' style={{display:'flex'}} ><strong style={{top:"0.2rem",position:"relative"}}>Share</strong>
-          <RiShareForwardLine style={{fontSize:"1.6rem",marginTop:"0.2rem",cursor:"pointer"}}  onClick={handleShare}/></p>
+          <RiShareForwardLine style={{marginTop:"0.2rem",cursor:"pointer"}}  onClick={handleShare} className='share'/></p>
           <div className="like-section">
             <button 
               className={`like-button ${liked ? 'liked' : ''}`}
@@ -147,7 +147,7 @@ function AudioBookDetail() {
             ))}
           </ul>
         </div>
-        <img className='InviteImg' src={invite} alt="" srcset="" onClick={handleCopyUrl} style={{cursor:"pointer"}}/>
+        <img className='InviteImg' src={invite} alt="" srcset="" onClick={handleShare} style={{cursor:"pointer"}}/>
         </div>
       </div>
       <div className="audio-control-section">
