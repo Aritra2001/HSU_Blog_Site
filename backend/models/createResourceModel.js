@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const { type } = require('os');
-const { default: isEmail } = require('validator/lib/isEmail');
 
 const Schema = mongoose.Schema
 

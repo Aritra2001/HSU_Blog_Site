@@ -1,5 +1,4 @@
 const cloudinary = require('cloudinary').v2;
-const fs = require('fs');
 const path = require('path');
 const validator = require('validator');
 const Project = require('../models/createProject');

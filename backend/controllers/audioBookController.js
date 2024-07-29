@@ -1,6 +1,9 @@
 const cloudinary = require('cloudinary').v2;
 const validator = require('validator');
 const AudioBook = require('../models/createAudioBook');
+const emailQueue = require('../jobs/emailQueue');
+const Subscribers = require('../models/subscriberModel');
+
 
 // Configure Cloudinary
 cloudinary.config({
@@ -94,7 +97,7 @@ const createAudioBook = async (req, res) => {
     const imageResult = await uploadToCloudinary(imageFile, 'image');
     const duration = ((audioResult.duration) / 60).toFixed(2);
 
-    await AudioBook.create({
+    const audiobook =  await AudioBook.create({
       audioBookPoster: imageResult.secure_url,
       audioBookPosterPublicId: imageResult.public_id,
       audio: audioResult.secure_url,
@@ -111,6 +114,12 @@ const createAudioBook = async (req, res) => {
       likes: 0,
       duration
     });
+
+    // const subscribers = await Subscribers.find({});
+
+    // subscribers.forEach(sub => {
+    //   emailQueue.add({ email: sub.email, audiobook: audiobook});
+    // })
 
     res.status(200).json({
       message: 'AudioBook created successfully'
