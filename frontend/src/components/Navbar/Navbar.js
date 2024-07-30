@@ -17,9 +17,9 @@ function Navbar() {
         <img src={logo} alt="" srcset="" className='logo'/>
         
         <div className={`menu ${isOpen ? 'open' : ''}`}>
-          <a href="#all-programs">All Programs</a>
-          <a href="#institutions">Institutions</a>
-          <a href="#about">About</a>
+          <a href="https://hexstaruniverse.com/all-courses/">All Programs</a>
+          <a href="https://hexstaruniverse.com/for-institutions/">Institutions</a>
+          <a href="https://hexstaruniverse.com/about-us-2/">About</a>
         </div>
         </div>
         <div className="instructor-button">
