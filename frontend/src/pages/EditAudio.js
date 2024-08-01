@@ -14,7 +14,7 @@ function EditAudio() {
     permalink: '',
     writer: '',
     summary: '',
-    phone: '',
+    color: '#000000',
     type: '',
     email: '',
     category: [],
@@ -152,10 +152,21 @@ function EditAudio() {
 
   // Sample options for Multiselect component
   const options = [
-    { name: 'Option 1', id: 1 },
-    { name: 'Option 2', id: 2 },
-    { name: 'Option 3', id: 3 },
-    { name: 'Option 4', id: 4 },
+    { name: 'Space Technology', id: 1 },
+    { name: 'Astronomy', id: 2 },
+    { name: 'AI & ML', id: 3 },
+    { name: 'Coding', id: 4 },
+    { name: 'UI & UX', id: 5 },
+    { name: 'Space Law', id: 6 },
+    { name: 'AstroBiology', id: 7 },
+    { name: 'Space Medicine', id: 8 },
+    { name: 'Satellite Technology', id: 9 },
+    { name: 'Aerospace', id: 10 },
+    { name: 'Additive Manufacturing', id: 11 },
+    { name: 'Avionics', id: 12 },
+    { name: 'Aerodynamics', id: 13 },
+    { name: 'CFD', id: 14 },
+    { name: 'Others', id: 15 },
   ];
 
   // Function to handle form submission
@@ -338,9 +349,9 @@ function EditAudio() {
             <input type="text" id="securityKey" name="securityKey" value={formData.securityKey} onChange={handleInputChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="phone">Phone Number<span className="required">*</span></label>
-            <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} />
-          </div>
+          <label htmlFor="color">Color:<span className="required">*</span></label>
+          <input type="text" id="color" name="color" value={formData.color} onChange={handleInputChange} />
+        </div>
         </div>
         <div className="row">
           <div className="form-group">

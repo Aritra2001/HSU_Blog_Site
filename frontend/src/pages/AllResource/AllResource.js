@@ -68,7 +68,7 @@ function AllResource() {
   return (
     <div className="all-resources-container">
       <div style={{display:"flex",justifyContent:"space-between"}}>
-      <h1> Resources</h1>
+      <h1>Resources</h1>
       <div className="search-bar-container">
         <form onSubmit={handleSearch} style={{ display: "flex", gap: "1.5rem" }}>
           <input
@@ -153,20 +153,19 @@ function AllResource() {
               backgroundColor: resource.color || '#f5f5f5',
               position: 'relative',
               width: '250px',
-              padding: '1rem',
-              borderRadius: '8px',
+             
+              borderRadius: '20px',
               overflow: 'hidden'
             }}>
               <img
-                src={resource.pdfPoster
-                  || 'default-poster.jpg'}
+                src={resource.pdfPoster || 'default-poster.jpg'}
                 alt={resource.name}
                 className="resource-banner"
-                style={{ width: '100%', height: 'auto' }}
+                style={{ width: '100%', height: '100%' }}
               />
-              <div className="resource-details">
-                <h3>{resource.resourceName}</h3>
-               
+              <div className="resource-details" style={{display:"flex",paddingLeft:"2rem",paddingRight:"2rem",justifyContent:"space-between"}}>
+                <h3>{new Date(resource.createdAt).toLocaleDateString()}</h3>
+                <button className="view-button" onClick={() => navigate(`/resource/${resource._id}`)}>View</button>
               </div>
             </div>
           </SwiperSlide>
@@ -174,7 +173,7 @@ function AllResource() {
       </Swiper>
       <div className="popular">
         <p>Listen to audioBook Summaries</p>
-      <PopularAudio/>
+        <PopularAudio/>
       </div>
     </div>
   );
