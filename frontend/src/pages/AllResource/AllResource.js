@@ -149,26 +149,19 @@ function AllResource() {
       >
         {(isSearching ? searchedResource : filteredResources).map((resource) => (
           <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)}>
-            <div className="resource-box" style={{
-              backgroundColor: resource.color || '#f5f5f5',
-              position: 'relative',
-              width: '250px',
-             
-              borderRadius: '20px',
-              overflow: 'hidden'
-            }}>
-              <img
-                src={resource.pdfPoster || 'default-poster.jpg'}
-                alt={resource.name}
-                className="resource-banner"
-                style={{ width: '100%', height: '100%' }}
-              />
-              <div className="resource-details" style={{display:"flex",paddingLeft:"2rem",paddingRight:"2rem",justifyContent:"space-between"}}>
-                <h3>{new Date(resource.createdAt).toLocaleDateString()}</h3>
-                <button className="view-button" onClick={() => navigate(`/resource/${resource._id}`)}>View</button>
-              </div>
+          <div className="resource-box">
+            <img
+              src={resource.pdfPoster || 'default-poster.jpg'}
+              alt={resource.name}
+              className="resource-banner"
+            />
+            <div className="resource-details">
+              <h3>Published On {new Date(resource.createdAt).toLocaleDateString()}</h3>
+              <button className="view-button" onClick={() => navigate(`/resource/${resource._id}`)}>View</button>
             </div>
-          </SwiperSlide>
+          </div>
+        </SwiperSlide>
+        
         ))}
       </Swiper>
       <div className="popular">
