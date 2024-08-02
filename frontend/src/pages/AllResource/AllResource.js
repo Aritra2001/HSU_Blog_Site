@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import heroBg from '../.././assets/heroBg.png';
 import PopularAudio from '../../components/PopularAudio/PopularAudio';
 import './AllResource.css';
 
@@ -68,19 +70,19 @@ function AllResource() {
   return (
     <div className="all-resources-container">
       <div style={{display:"flex",justifyContent:"space-between"}}>
-      <h1>Resources</h1>
-      <div className="search-bar-container">
-        <form onSubmit={handleSearch} style={{ display: "flex", gap: "1.5rem" }}>
-          <input
-            type="text"
-            placeholder="Search resources..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <button type="submit" className="search-button" onClick={handleSearch} style={{cursor:"pointer"}}>Search</button>
-        </form>
-      </div>
+        <h1>Resources</h1>
+        <div className="search-bar-container">
+              <form onSubmit={handleSearch} style={{display:"flex"}}>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+                <button type="submit" className="search-button"><FaSearch /></button>
+              </form>
+            </div>
       </div>
 
       {/* Category Filter Swiper */}
@@ -149,24 +151,77 @@ function AllResource() {
       >
         {(isSearching ? searchedResource : filteredResources).map((resource) => (
           <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)}>
-          <div className="resource-box">
-            <img
-              src={resource.pdfPoster || 'default-poster.jpg'}
-              alt={resource.name}
-              className="resource-banner"
-            />
-            <div className="resource-details">
-              <h3>Published On {new Date(resource.createdAt).toLocaleDateString()}</h3>
-              <button className="view-button" onClick={() => navigate(`/resource/${resource._id}`)}>View</button>
+            <div className="resource-box">
+              <img
+                src={resource.pdfPoster || 'default-poster.jpg'}
+                alt={resource.name}
+                className="resource-banner"
+                
+              />
+              <div className="Resource-name">
+                <p>{resource.resourceName}</p>
+              </div>
+              
+              <div className="resource-details">
+                <h3>Published On {new Date(resource.createdAt).toLocaleDateString()}</h3>
+                <button className="view-button" onClick={() => navigate(`/resource/${resource._id}`)}>View</button>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-        
+          </SwiperSlide>
         ))}
       </Swiper>
+
       <div className="popular">
         <p>Listen to audioBook Summaries</p>
-        <PopularAudio/>
+        <PopularAudio />
+      </div>
+
+      <div className="youtube">
+        <h2>Watch YouTube Videos</h2>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={3}
+          modules={[Navigation, Pagination, Autoplay, Keyboard]}
+         
+          loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 40,
+            },
+            1200: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+          }}
+          className="swiper-containerYT"
+        >
+          {/* Sample YouTube Video Slides */}
+          {[
+            { id: 1, thumbnail:heroBg, link: 'https://www.youtube.com/watch?v=example1' },
+            { id: 2, thumbnail: heroBg, link: 'https://www.youtube.com/watch?v=example2' },
+            { id: 3, thumbnail: 'yt-thumbnail3.jpg', link: 'https://www.youtube.com/watch?v=example3' },
+            // Add more videos as needed
+          ].map(video => (
+            <SwiperSlide key={video.id}>
+              <a href={video.link} target="_blank" rel="noopener noreferrer">
+                <img src={video.thumbnail} alt={`YouTube Video ${video.id}`} className="youtube-thumbnail" />
+              </a>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

@@ -67,6 +67,43 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.youtube {
+  margin-top: 2rem;
+}
+
+.youtube h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.youtube-thumbnail {
+  width: 70%;
+  height: auto;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.swiper-containerYT{
+  margin-top: 4rem;
+
+}
+.Resource-name {
+  position: absolute;
+  
+ 
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  left:2rem;
+  top:4rem;
+}
+.Resource-name p{
+  color:white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}
 
 @media (max-width: 375px) {
   .popular p {
@@ -79,5 +116,11 @@
 
   .resource-banner {
     height: 150px; /* Adjust for smaller screens */
+  }
+}
+@media (min-width: 1200px)
+{
+  .youtube-thumbnail {
+    border-radius: 50px;
   }
 }
