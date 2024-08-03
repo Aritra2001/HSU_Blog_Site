@@ -104,6 +104,12 @@
   margin-right: auto;
   margin-top: 0;
 }
+.swiper-slideYT {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
 
 @media (max-width: 375px) {
   .popular p {

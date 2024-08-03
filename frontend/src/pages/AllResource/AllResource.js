@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import heroBg from '../.././assets/heroBg.png';
+import yt1 from '../.././assets/Yt1.png';
+import yt2 from '../.././assets/yt2.png';
 import PopularAudio from '../../components/PopularAudio/PopularAudio';
 import './AllResource.css';
 
@@ -150,7 +151,7 @@ function AllResource() {
         className="swiper-container"
       >
         {(isSearching ? searchedResource : filteredResources).map((resource) => (
-          <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)}>
+          <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)} >
             <div className="resource-box">
               <img
                 src={resource.pdfPoster || 'default-poster.jpg'}
@@ -210,12 +211,12 @@ function AllResource() {
         >
           {/* Sample YouTube Video Slides */}
           {[
-            { id: 1, thumbnail:heroBg, link: 'https://www.youtube.com/watch?v=example1' },
-            { id: 2, thumbnail: heroBg, link: 'https://www.youtube.com/watch?v=example2' },
+            { id: 1, thumbnail:yt1, link: 'https://www.youtube.com/live/NCrA8CjO_tU?si=i4kpcF_OIAfK4U0J' },
+            { id: 2, thumbnail: yt2, link: 'https://www.youtube.com/live/r_3zZ0E6Y1M?si=AxypQg3L_MzyezLG' },
             { id: 3, thumbnail: 'yt-thumbnail3.jpg', link: 'https://www.youtube.com/watch?v=example3' },
             // Add more videos as needed
           ].map(video => (
-            <SwiperSlide key={video.id}>
+            <SwiperSlide key={video.id} className='swiper-slideYT'>
               <a href={video.link} target="_blank" rel="noopener noreferrer">
                 <img src={video.thumbnail} alt={`YouTube Video ${video.id}`} className="youtube-thumbnail" />
               </a>

@@ -166,7 +166,8 @@ function EditAudio() {
     { name: 'Avionics', id: 12 },
     { name: 'Aerodynamics', id: 13 },
     { name: 'CFD', id: 14 },
-    { name: 'Others', id: 15 },
+    {name:'Self Help',id:15},
+    { name: 'Others', id: 16 },
   ];
 
   // Function to handle form submission
