@@ -94,7 +94,7 @@ function AllResource() {
         loop={true}
         breakpoints={{
           320: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 40,
           },
           1020: {
@@ -183,6 +183,10 @@ function AllResource() {
           spaceBetween={30}
           slidesPerView={3}
           modules={[Navigation, Pagination, Autoplay, Keyboard]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false
+          }}
          
           loop={true}
           breakpoints={{
