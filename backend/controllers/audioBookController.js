@@ -222,7 +222,7 @@ const deleteAudiobook = async (req, res) => {
 }
 
 const editAudioBook = async (req, res) => {
-  const { AudioBookName, AuthorName, description, category, permalink, skills, security_key, phone, Type, email } = req.body;
+  const { AudioBookName, AuthorName, description, category, permalink, skills, security_key, color, Type, email } = req.body;
   const { id } = req.params;
 
   try {
@@ -252,8 +252,8 @@ const editAudioBook = async (req, res) => {
       throw new Error('Enter security key!');
     }
 
-    if (!validator.isMobilePhone(phone)) {
-      throw new Error('Phone number not valid!');
+    if(isValidHexColor(color) === false) {
+      throw Error('Enter color code in correctly!')
     }
 
     if (!validator.isEmail(email)) {
@@ -295,7 +295,7 @@ const editAudioBook = async (req, res) => {
     audioBook.category = category;
     audioBook.permalink = permalink;
     audioBook.skills = skills;
-    audioBook.phone = phone;
+    audioBook.color = color;
     audioBook.Type = Type;
     audioBook.email = email;
     if (audioResult) {
