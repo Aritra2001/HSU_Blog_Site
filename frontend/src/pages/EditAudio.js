@@ -39,7 +39,7 @@ function EditAudio() {
           permalink: audioBook.permalink || '',
           writer: audioBook.AuthorName || '',
           summary: audioBook.description || '',
-          phone: audioBook.phone || '',
+          color: audioBook.color || '',
           type: audioBook.Type || '',
           email: audioBook.email || '',
           category: mappedCategories,
@@ -173,10 +173,10 @@ function EditAudio() {
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { name, writer, summary, phone, type, email, category, securityKey, whatYouWillLearn, bannerFile, audioFile } = formData;
+    const { name, writer, summary, color, type, email, category, securityKey, whatYouWillLearn, bannerFile, audioFile } = formData;
 
     // Validate required fields
-    if (!name || !writer || !summary || !phone || !type || !email || category.length === 0 || whatYouWillLearn.length === 0 || !bannerFile || !audioFile) {
+    if (!name || !writer || !summary || !color || !type || !email || category.length === 0 || whatYouWillLearn.length === 0 || !bannerFile || !audioFile) {
       showErrorToast('Please fill in all the required fields.');
       return;
     }
@@ -193,7 +193,7 @@ function EditAudio() {
     data.append('permalink', formData.permalink);
     data.append('AuthorName', writer);
     data.append('description', summary);
-    data.append('phone', phone);
+    data.append('color', color);
     data.append('Type', type);
     data.append('email', email);
     data.append('security_key', securityKey); // Ensure the parameter name matches backend expectations
@@ -228,7 +228,7 @@ function EditAudio() {
           permalink: '',
           writer: '',
           summary: '',
-          phone: '',
+          color: '',
           type: '',
           email: '',
           category: [],
