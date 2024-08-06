@@ -71,7 +71,7 @@ function AllResource() {
   return (
     <div className="all-resources-container">
       <div style={{display:"flex",justifyContent:"space-between"}} className='container'>
-        <h1>Resources</h1>
+        <h2 style={{marginLeft:"4rem"}}>Resources</h2>
         <div className="search-bar-container">
               <form onSubmit={handleSearch} style={{display:"flex"}}>
                 <input
