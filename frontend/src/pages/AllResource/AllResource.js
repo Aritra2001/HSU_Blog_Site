@@ -185,7 +185,7 @@ function AllResource() {
       
 
       <div className="popular">
-        <p>Listen to audioBook Summaries</p>
+        <p>Listen to AudioBook Summaries</p>
         <Swiper style={{marginTop:"8rem"}}
           spaceBetween={30}
           slidesPerView={3}
