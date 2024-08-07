@@ -110,7 +110,9 @@
   align-items: center;
   height: 250px;
 }
-
+.video-player{
+  margin-top:3rem;
+}
 @media (max-width: 375px) {
   .popular p {
     margin-left: 0;
