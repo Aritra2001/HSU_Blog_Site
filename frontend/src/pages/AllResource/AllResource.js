@@ -163,7 +163,7 @@ function AllResource() {
         className="swiper-container"
       >
         {(isSearching ? searchedResource : filteredResources).map((resource) => (
-          <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)} >
+          <SwiperSlide key={resource._id} onClick={() => navigate(`/resource/${resource._id}`)} style={{cursor:"pointer"}}>
             <div className="resource-box">
               <img
                 src={resource.pdfPoster || 'default-poster.jpg'}
@@ -185,7 +185,7 @@ function AllResource() {
       
 
       <div className="popular">
-        <p>Listen to AudioBook Summaries</p>
+        <h5 style={{marginLeft:"4rem"}}>Listen to AudioBook Summaries</h5>
         <Swiper style={{marginTop:"8rem"}}
           spaceBetween={30}
           slidesPerView={3}

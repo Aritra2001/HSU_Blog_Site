@@ -12,6 +12,7 @@ import CreateResource from './pages/CreateResource/CreateResource';
 import Dashboard from './pages/Dashboard/Dashboard';
 import EditAudio from './pages/EditAudio';
 import PendingContents from './pages/Pending/PendingContent';
+import ResourceDetails from './pages/Resource Page/ResourceDetails';
 import ViewResource from './pages/ViewResource/ViewResource';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/EditAudio/:id' element={<EditAudio />} />
         {/* Resource Routes */} 
         <Route path='/allResource' element={<AllResource />} />
+        <Route path="/resource/:id" element={<ResourceDetails/>} />
 
       </Routes>
       <Footer/>
