@@ -5,6 +5,8 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { useParams } from 'react-router-dom';
 import heroBg from '../../assets/HeroBg.svg';
 
+import PopularAudio from '../../components/PopularAudio/PopularAudio';
+import PopularResources from '../../components/PopularResources/PopularResources';
 import './ResourceDetails.css';
 
 function ResourceDetails() {
@@ -131,10 +133,15 @@ function ResourceDetails() {
           </div>
         </div>
       </div>
-      
-      <div className="popular">
+    
+        <h2 style={{textAlign:"left",width:"100%",marginLeft:"4rem",marginBottom:'4rem'}}>Discover more</h2>
+      <PopularResources/>
+
+      <div className="popular" style={{width:"100%"}}>
         <p>Popular</p>
+        <PopularAudio />
       </div>
+      
     </div>
   );
 }
