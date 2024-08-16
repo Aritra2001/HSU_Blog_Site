@@ -14,6 +14,12 @@
 
 .search-bar-container {
   /* Add styles for search-bar-container if needed */
+  display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 270px;
+    gap: 1rem;
+
 }
 
 .popular p {
