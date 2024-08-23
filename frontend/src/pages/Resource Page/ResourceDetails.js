@@ -124,7 +124,7 @@ function ResourceDetails() {
         </div>
         <div className="side-boxes">
           <div className="box discover">
-            <h4>Discover</h4>
+            <h4>Discover Related Books From Amazon</h4>
             <p>Explore similar resources that might interest you.</p>
           </div>
           <div className="box download">

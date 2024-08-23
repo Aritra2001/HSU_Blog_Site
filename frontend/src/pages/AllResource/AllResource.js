@@ -7,6 +7,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import yt1 from '../.././assets/Yt1.png';
 import yt2 from '../.././assets/yt2.png';
+import yt3 from '../.././assets/yt3.png';
+import yt4 from '../.././assets/yt4.png';
+import yt5 from '../.././assets/yt5.png';
+import yt6 from '../.././assets/yt6.png';
+import yt7 from '../.././assets/yt7.png';
+import yt8 from '../.././assets/yt8.png';
 import './AllResource.css';
 
 function AllResource() {
@@ -282,9 +288,14 @@ function AllResource() {
           className="swiper-containerYT"
         >
           {[
-            { id: 1, thumbnail: yt1, link: 'https://www.youtube.com/embed/NCrA8CjO_tU' },
-            { id: 2, thumbnail: yt2, link: 'https://www.youtube.com/embed/r_3zZ0E6Y1M' },
-            { id: 3, thumbnail: 'yt-thumbnail3.jpg', link: 'https://www.youtube.com/embed/example3' },
+             { id: 1, thumbnail: yt1, link: 'https://www.youtube.com/embed/NCrA8CjO_tU' },
+             { id: 2, thumbnail: yt2, link: 'https://www.youtube.com/embed/r_3zZ0E6Y1M' },
+             { id: 3, thumbnail: yt3, link: 'https://www.youtube.com/embed/l32u0AoHVwU' },
+             { id: 4, thumbnail: yt4, link: 'https://www.youtube.com/embed/ol1ePrLprrE' },
+             { id: 5, thumbnail: yt5, link: 'https://www.youtube.com/embed/crmCq0LVkhk' },
+             { id: 6, thumbnail: yt6, link: 'https://www.youtube.com/embed/sAiM4Lcjn5E' },
+             { id: 7, thumbnail: yt7, link: 'https://www.youtube.com/embed/cDd-k4ci-KE' },
+             { id: 8, thumbnail: yt8, link: 'https://www.youtube.com/embed/RDzUU8IHKJs' },
           ].map(video => (
             <SwiperSlide key={video.id} className='swiper-slideYT'>
               <img

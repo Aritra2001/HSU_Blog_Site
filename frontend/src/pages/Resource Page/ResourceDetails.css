@@ -52,6 +52,9 @@
   margin-left: auto;
   margin-right: auto;
 }
+.ResourceName{
+  font-family: 'Montserrat', sans-serif;
+}
 
 .hero-text p {
   position: relative;
@@ -131,7 +134,7 @@
 .box h4 {
   margin-bottom: 1rem;
   color: #333;
-  font-family: 'Europa Grotesk SH', sans-serif;
+  font-family: 'Gilroy-Bold';
   font-size: 1.5rem;
 }
 
